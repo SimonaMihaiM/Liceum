@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:alpha="0.90"
+    android:background="#9F56B4"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/welcome_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginRight="20dp"
+        android:maxLength="15"
+        android:text="@string/welcome"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:id="@+id/name_display"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/welcome_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:maxLength="15"
+        android:textAlignment="center"
+        android:textColor="#43c7d6"
+        android:textSize="30sp" />
+
+    <RelativeLayout
+        android:id="@+id/relative2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name_display">
+
+        <EditText
+            android:id="@+id/password2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:drawablePadding="15dp"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:maxLength="15"
+            android:singleLine="true"
+            android:textColor="#53c39a"
+            android:textColorHint="#fff"
+            android:textSize="20sp"
+            android:importantForAutofill="no"
+            android:drawableStart="@drawable/ic_pass" />
+
+        <Button
+            android:id="@+id/show2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/password2"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:text="@string/show"
+            android:textColor="#fff"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/forget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relative2"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="5dp"
+        android:clickable="true"
+        android:onClick="showDialog"
+        android:focusable="true"
+        android:text="@string/forgot_password"
+        android:textColor="#AAFAC8"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/Continue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D15224"
+        android:text="@string/sign_in"
+        android:textColor="#fff"
+        android:layout_below="@id/relative2"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="70dp"
+        android:textSize="20sp"/>
+
+
+
+
+</RelativeLayout>

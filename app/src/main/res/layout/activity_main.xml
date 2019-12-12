@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="#9F56B4"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:alpha=".90">
+
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:contentDescription="@string/question_mark"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="144dp"
+        android:layout_marginBottom="20dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/icon" />
+
+    <LinearLayout
+        android:id="@+id/linear_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:drawablePadding="15dp"
+            android:hint="Name"
+            tools:ignore="HardcodedText"
+            android:inputType="textPersonName"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:textColor="#FF53C39A"
+            android:textColorHint="#fff"
+            android:textSize="20sp"
+            android:importantForAutofill="no"
+            android:drawableStart="@drawable/user"/>
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:drawablePadding="15dp"
+        android:hint="Email"
+        tools:ignore="HardcodedText"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:textColor="#FF53C39A"
+        android:textColorHint="#fff"
+        android:textSize="20sp"
+        android:drawableStart="@drawable/ic_email"
+        android:importantForAutofill="no"/>
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/email">
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:drawableStart="@drawable/ic_pass"
+            android:drawablePadding="15dp"
+            android:hint="Password"
+            tools:ignore="HardcodedText"
+            android:inputType="textPassword"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:textColor="#53c39a"
+            android:textColorHint="#fff"
+            android:textSize="20sp"
+            android:importantForAutofill="no"/>
+
+        <Button
+            android:id="@+id/show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/password"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:text="SHOW"
+            tools:ignore="HardcodedText"
+            android:textColor="#fff"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/getStarted"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relative"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="20dp"
+        android:background="#D15224"
+        android:text="GET STARTED"
+        tools:ignore="HardcodedText"
+        android:textColor="#fff"
+        android:textSize="20sp"/>
+
+</RelativeLayout>
