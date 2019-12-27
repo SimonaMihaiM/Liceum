@@ -6,4 +6,24 @@
     <string name="show">SHOW</string>
     <string name="forgot_password">Forgot Password</string>
     <string name="sign_in">Sign In</string>
+    <string name="play">Play</string>
+    <string name="statistics">Statistics</string>
+    <string name="attempted_questions">Attempted Questions :</string>
+    <string name="correct">Correct :</string>
+    <string name="incorrect">Incorrect :</string>
+    <string name="improvement">You need improvement!</string>
+    <string name="average">You are an average quizzer!</string>
+    <string name="above_average">You are an above average quizzer!</string>
+    <string name="amazing">You are an amazing quizzer! Congratulations!</string>
+    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="computer">Computer</string>
+    <string name="sports">Sports</string>
+    <string name="inventions">Inventions</string>
+    <string name="general_knowledge">General Knowledge</string>
+    <string name="science">Science</string>
+    <string name="english">English</string>
+    <string name="authors">Authors</string>
+    <string name="mathematics">Mathematics</string>
+    <string name="capitals">Capitals</string>
+    <string name="currency">Currency</string>
 </resources>
