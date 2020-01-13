@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -19,6 +20,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.net.Inet4Address;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -90,6 +93,17 @@ public class MainActivity extends AppCompatActivity {
                         progressBar.setProgress(0);
                         progressBar.setMax(100);
                         progressBar.show(); // afisarea
+
+                        // adaugarea unui delay
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressBar.cancel();
+                                Intent intent = new Intent(MainActivity.this, Navigation.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }, 2000);
                     }
                 }
             });
@@ -122,6 +136,16 @@ public class MainActivity extends AppCompatActivity {
                             progressBar.setProgress(0);
                             progressBar.setMax(100);
                             progressBar.show();
+
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    progressBar.cancel();
+                                    Intent intent = new Intent(MainActivity.this, Navigation.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }, 2000);
                         }
                         // parola introdusa este gresita
                         else {

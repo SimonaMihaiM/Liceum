@@ -19,7 +19,7 @@ public class Result extends AppCompatActivity {
 
         Intent intent = getIntent();
         cor = intent.getIntExtra("correct", 0);
-        attempt = intent.getIntExtra("attempt", 0);
+        attempt = intent.getIntExtra("attemp", 0);
         incorr = attempt - cor;
         scor = 10 * cor;
 

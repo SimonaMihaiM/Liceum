@@ -8,8 +8,32 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ScoreCard"></activity>
-        <activity android:name=".Result" />
+
+        <activity
+            android:name=".Settings"
+            android:label="Settings"
+            android:parentActivityName=".Navigation"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Navigation"/>
+        </activity>
+
+        <activity
+            android:name=".ScoreCard"
+            android:label="High Score"
+            android:parentActivityName=".Navigation"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Navigation"/>
+        </activity>
+
+        <activity
+            android:name=".Result"
+            android:label="Result">
+        </activity>
+
         <activity
             android:name=".MainActivity"
             android:label="Trivia Game"
@@ -19,6 +43,29 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".Navigation"
+            android:label="Trivia Game"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+
+        <activity
+            android:name=".Questions"
+            android:label="Questions"
+            android:parentActivityName=".Navigation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Navigation"/>
+
+
         </activity>
     </application>
 

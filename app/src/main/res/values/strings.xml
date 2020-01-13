@@ -26,4 +26,11 @@
     <string name="mathematics">Mathematics</string>
     <string name="capitals">Capitals</string>
     <string name="currency">Currency</string>
+    <string name="reset_highscore">Reset Highscore</string>
+    <string name="header">header</string>
+    <string name="books">Books</string>
+    <string name="scorecard">Scorecard</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="settings">Settings</string>
 </resources>
