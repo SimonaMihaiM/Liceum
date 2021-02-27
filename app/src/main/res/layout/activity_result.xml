@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/statistics"
+        android:text="Rezultat"
         android:textAlignment="center"
         android:textSize="48sp"/>
 
@@ -40,7 +40,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/attempted_questions"
+            android:text="Întrebări răspunse:"
             android:textColor="#999435"
             android:textSize="24sp"/>
 
@@ -61,7 +61,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/correct"
+            android:text="Corecte:"
             android:textColor="#51b364"
             android:textSize="24sp"/>
 
@@ -82,7 +82,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/incorrect"
+            android:text="Incorecte:"
             android:textColor="#e9403d"
             android:textSize="24sp"/>
 

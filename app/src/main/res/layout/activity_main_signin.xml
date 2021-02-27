@@ -18,7 +18,7 @@
         android:layout_marginTop="80dp"
         android:layout_marginRight="20dp"
         android:maxLength="15"
-        android:text="@string/welcome"
+        android:text="@string/bineativenit"
         android:textAlignment="center"
         android:textColor="#fff"
         android:textSize="30sp"/>
@@ -50,7 +50,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:drawablePadding="15dp"
-            android:hint="@string/password"
+            android:hint="@string/parola"
             android:inputType="textPassword"
             android:maxLength="15"
             android:singleLine="true"
@@ -81,7 +81,7 @@
         android:clickable="true"
         android:onClick="showDialog"
         android:focusable="true"
-        android:text="@string/forgot_password"
+        android:text="@string/parolauitata"
         android:textColor="#AAFAC8"
         android:textStyle="bold" />
 
