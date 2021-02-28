@@ -1,4 +1,4 @@
-package com.iulia.proiecttrivia;
+package com.iulia.proiecttrivia.data;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -6,18 +6,17 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Locale;
 
-public class sports extends SQLiteOpenHelper {
+public class science extends SQLiteOpenHelper {
 
     private static final String Database_path = "/data/data/com.iulia.proiecttrivia/databases/";
-    private static final String Database_name = "sports.db"; // nume database din assets
-    private static final String Table_name = "sports"; // numele tabelului
+    private static final String Database_name = "science.db"; // nume database din assets
+    private static final String Table_name = "science"; // numele tabelului
     private static final String uid = "_id"; // numele primei coloane
     private static final String Question = "Question"; // numele coloanei 2
     private static final String OptionA = "OptionA"; // numele coloanei 3
@@ -29,7 +28,7 @@ public class sports extends SQLiteOpenHelper {
     public SQLiteDatabase sqlite; // obiect de tip SQLiteDatabase
     private Context context; // obiect de tip context pentru a prelua din Questions
 
-    public sports(Context context) {
+    public science(Context context) {
         super(context, Database_name, null, version);
         this.context = context;
     }
@@ -44,24 +43,17 @@ public class sports extends SQLiteOpenHelper {
         // nu avem cod aici. database-ul este creat
     }
 
-    public void openDatabase() throws SQLException {
-        String myPath = Database_path + Database_name;
-        sqlite = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
+    public void createDatabase() {
+        createDb();
     }
 
-    private boolean DBexists() {
-        SQLiteDatabase db = null;
-        try {
-            String databasePath = Database_path + Database_name;
-            db = SQLiteDatabase.openDatabase(databasePath, null, SQLiteDatabase.OPEN_READWRITE);
-            db.setLocale(Locale.getDefault());
-            db.setVersion(1);
-        } catch (SQLException e) {
-            Log.e("SQLite", "Database not found");
+    private void createDb() {
+
+        boolean dbExists = DBexists();
+        if (!dbExists) {
+            this.getReadableDatabase();
+            copyDbFromResource();
         }
-        if (db != null)
-            db.close();
-        return db!= null;
     }
 
     private void copyDbFromResource() {
@@ -86,17 +78,24 @@ public class sports extends SQLiteOpenHelper {
         }
     }
 
-    private void createDb() {
-
-        boolean dbExists = DBexists();
-        if (!dbExists) {
-            this.getReadableDatabase();
-            copyDbFromResource();
-        }
+    public void openDatabase() throws SQLException {
+        String myPath = Database_path + Database_name;
+        sqlite = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
     }
 
-    public void createDatabase() {
-        createDb();
+    private boolean DBexists() {
+        SQLiteDatabase db = null;
+        try {
+            String databasePath = Database_path + Database_name;
+            db = SQLiteDatabase.openDatabase(databasePath, null, SQLiteDatabase.OPEN_READWRITE);
+            db.setLocale(Locale.getDefault());
+            db.setVersion(1);
+        } catch (SQLException e) {
+            Log.e("SQLite", "Database not found");
+        }
+        if (db != null)
+            db.close();
+        return db!= null;
     }
 
     public String readQuestion(int i){
@@ -167,7 +166,7 @@ public class sports extends SQLiteOpenHelper {
 
     public String readAnswer(int i) {
         String qField;
-        Cursor cursor = sqlite.rawQuery("SELECT " + Answer+ " FROM " + Table_name + " WHERE "
+        Cursor cursor = sqlite.rawQuery("SELECT " + Answer + " FROM " + Table_name + " WHERE "
                 + uid + " = " + i + "", null);
         if (cursor.moveToFirst()) {
             qField = cursor.getString(0);

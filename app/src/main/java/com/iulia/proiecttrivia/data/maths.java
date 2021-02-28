@@ -1,4 +1,4 @@
-package com.iulia.proiecttrivia;
+package com.iulia.proiecttrivia.data;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -12,11 +12,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Locale;
 
-public class capitals extends SQLiteOpenHelper {
+public class maths extends SQLiteOpenHelper {
 
     private static final String Database_path = "/data/data/com.iulia.proiecttrivia/databases/";
-    private static final String Database_name = "capitals.db"; // nume database din assets
-    private static final String Table_name = "capitals"; // numele tabelului
+    private static final String Database_name = "maths.db"; // nume database din assets
+    private static final String Table_name = "maths"; // numele tabelului
     private static final String uid = "_id"; // numele primei coloane
     private static final String Question = "Question"; // numele coloanei 2
     private static final String OptionA = "OptionA"; // numele coloanei 3
@@ -28,7 +28,7 @@ public class capitals extends SQLiteOpenHelper {
     public SQLiteDatabase sqlite; // obiect de tip SQLiteDatabase
     private Context context; // obiect de tip context pentru a prelua din Questions
 
-    public capitals(Context context) {
+    public maths(Context context) {
         super(context, Database_name, null, version);
         this.context = context;
     }
@@ -100,7 +100,7 @@ public class capitals extends SQLiteOpenHelper {
 
     public String readQuestion(int i){
         String qField;
-        Cursor cursor = sqlite.rawQuery("SELECT " + Question + " FROM " + Table_name + " WHERE "
+        Cursor cursor = sqlite.rawQuery(" SELECT " + Question + " FROM " + Table_name + " WHERE "
                 + uid + " = " + i + "", null);
 
         if (cursor.moveToFirst()) {
@@ -166,7 +166,7 @@ public class capitals extends SQLiteOpenHelper {
 
     public String readAnswer(int i) {
         String qField;
-        Cursor cursor = sqlite.rawQuery("SELECT " + Answer + " FROM " + Table_name + " WHERE "
+        Cursor cursor = sqlite.rawQuery("SELECT " + Answer+ " FROM " + Table_name + " WHERE "
                 + uid + " = " + i + "", null);
         if (cursor.moveToFirst()) {
             qField = cursor.getString(0);

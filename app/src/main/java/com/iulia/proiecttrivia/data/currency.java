@@ -1,4 +1,4 @@
-package com.iulia.proiecttrivia;
+package com.iulia.proiecttrivia.data;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -12,11 +12,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Locale;
 
-public class english extends SQLiteOpenHelper {
+public class currency extends SQLiteOpenHelper {
 
     private static final String Database_path = "/data/data/com.iulia.proiecttrivia/databases/";
-    private static final String Database_name = "english.db"; // nume database din assets
-    private static final String Table_name = "english"; // numele tabelului
+    private static final String Database_name = "currency.db"; // nume database din assets
+    private static final String Table_name = "currency"; // numele tabelului
     private static final String uid = "_id"; // numele primei coloane
     private static final String Question = "Question"; // numele coloanei 2
     private static final String OptionA = "OptionA"; // numele coloanei 3
@@ -28,7 +28,7 @@ public class english extends SQLiteOpenHelper {
     public SQLiteDatabase sqlite; // obiect de tip SQLiteDatabase
     private Context context; // obiect de tip context pentru a prelua din Questions
 
-    public english(Context context) {
+    public currency(Context context) {
         super(context, Database_name, null, version);
         this.context = context;
     }
@@ -140,7 +140,7 @@ public class english extends SQLiteOpenHelper {
 
     public String readOptionC(int i) {
         String qField;
-        Cursor cursor = sqlite.rawQuery("SELECT " + OptionC + " FROM  " + Table_name + " WHERE "
+        Cursor cursor = sqlite.rawQuery("SELECT " + OptionC + " FROM " + Table_name + " WHERE "
                 + uid + " = " + i + "", null);
         if (cursor.moveToFirst()) {
             qField = cursor.getString(0);

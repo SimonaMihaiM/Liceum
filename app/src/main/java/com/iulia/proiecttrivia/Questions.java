@@ -13,6 +13,17 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.snackbar.Snackbar;
+import com.iulia.proiecttrivia.data.books;
+import com.iulia.proiecttrivia.data.capitals;
+import com.iulia.proiecttrivia.data.computer;
+import com.iulia.proiecttrivia.data.currency;
+import com.iulia.proiecttrivia.data.english;
+import com.iulia.proiecttrivia.data.general;
+import com.iulia.proiecttrivia.data.inventions;
+import com.iulia.proiecttrivia.data.maths;
+import com.iulia.proiecttrivia.data.science;
+import com.iulia.proiecttrivia.data.sports;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
