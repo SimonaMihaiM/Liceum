@@ -320,7 +320,7 @@ public class Questions extends AppCompatActivity {
         } else if (get.equals("c6")) {
 
             if (c6 == 0) {
-                for (i = 1; i < 27; i++) {
+                for (i = 1; i < 60; i++) {
                     list.add(i);
                 }
                 Collections.shuffle(list);
