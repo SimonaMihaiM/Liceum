@@ -288,7 +288,7 @@ public class Questions extends AppCompatActivity {
         } else if (get.equals("c4")) {
 
             if (c4 == 0) {
-                for (i = 1; i < 25; i++) {
+                for (i = 1; i < 40; i++) {
                     list.add(i);
                 }
                 Collections.shuffle(list);
