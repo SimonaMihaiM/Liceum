@@ -11,10 +11,10 @@
     <string name="attempted_questions">Întrebări încercate :</string>
     <string name="correct">Corect :</string>
     <string name="incorrect">Incorect :</string>
-    <string name="improvement">You need improvement!</string>
-    <string name="average">You are an average quizzer!</string>
-    <string name="above_average">You are an above average quizzer!</string>
-    <string name="amazing">You are an amazing quizzer! Congratulations!</string>
+    <string name="improvement">Ai nevoie de îmbunătățire!</string>
+    <string name="average">Ești un jucător mediu!</string>
+    <string name="above_average">Ești un jucător peste medie!</string>
+    <string name="amazing">Ești extraordinar! Felicitări!</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
     <string name="computer">Computer</string>
     <string name="sports">Sport</string>
