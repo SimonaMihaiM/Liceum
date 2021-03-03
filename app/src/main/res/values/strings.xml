@@ -16,19 +16,19 @@
     <string name="above_average">Ești un jucător peste medie!</string>
     <string name="amazing">Ești extraordinar! Felicitări!</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
-    <string name="computer">Computer</string>
-    <string name="sports">Sport</string>
-    <string name="inventions">Invenții</string>
+    <string name="computer">Chimie</string>
+    <string name="sports">Logică</string>
+    <string name="inventions">Religie</string>
     <string name="general_knowledge">Istorie</string>
-    <string name="science">Știință</string>
+    <string name="science">Fizică</string>
     <string name="english">Română</string>
     <string name="authors">Autori</string>
     <string name="mathematics">Matematică</string>
-    <string name="capitals">Capitale</string>
-    <string name="currency">Bani</string>
+    <string name="capitals">Geografie</string>
+    <string name="currency">Economie</string>
     <string name="reset_highscore">Resetare scor</string>
     <string name="header">header</string>
-    <string name="books">Cărți</string>
+    <string name="books">Biologie</string>
     <string name="scorecard">Tabelă de scor</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

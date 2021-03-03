@@ -240,7 +240,7 @@ public class Questions extends AppCompatActivity {
         if (get.equals("c1")) {
 
             if (c1 == 0) {
-                for (i = 1; i < 33; i++) {
+                for (i = 1; i < 20; i++) {
                     list.add(i);
                 }
                 Collections.shuffle(list);
@@ -256,7 +256,7 @@ public class Questions extends AppCompatActivity {
         } else if (get.equals("c2")) {
 
             if (c2 == 0) {
-                for (i = 1; i < 25; i++) {
+                for (i = 1; i < 20; i++) {
                     list.add(i);
                 }
                 Collections.shuffle(list);
@@ -272,7 +272,7 @@ public class Questions extends AppCompatActivity {
         } else if (get.equals("c3")) {
 
             if (c3 == 0) {
-                for (i = 1; i < 25; i++) {
+                for (i = 1; i < 20; i++) {
                     list.add(i);
                 }
                 Collections.shuffle(list);
@@ -304,7 +304,7 @@ public class Questions extends AppCompatActivity {
         } else if (get.equals("c5")) {
 
             if (c5 == 0) {
-                for (i = 1; i < 30; i++) {
+                for (i = 1; i < 20; i++) {
                     list.add(i);
                 }
                 Collections.shuffle(list);
@@ -336,7 +336,7 @@ public class Questions extends AppCompatActivity {
         } else if (get.equals("c7")) {
 
             if (c7 == 0) {
-                for (i = 1; i < 21; i++) {
+                for (i = 1; i < 20; i++) {
                     list.add(i);
                 }
                 Collections.shuffle(list);
@@ -352,7 +352,7 @@ public class Questions extends AppCompatActivity {
         } else if (get.equals("c8")) {
 
             if (c8 == 0) {
-                for (i = 1; i < 25; i++) {
+                for (i = 1; i < 20; i++) {
                     list.add(i);
                 }
                 Collections.shuffle(list);
@@ -368,7 +368,7 @@ public class Questions extends AppCompatActivity {
         } else if (get.equals("c9")) {
 
             if (c9 == 0) {
-                for (i = 1; i < 90; i++) {
+                for (i = 1; i < 20; i++) {
                     list.add(i);
                 }
                 Collections.shuffle(list);
@@ -384,7 +384,7 @@ public class Questions extends AppCompatActivity {
         } else if (get.equals("c10")) {
 
             if (c10 == 0) {
-                for (i = 1; i < 19; i++) {
+                for (i = 1; i < 20; i++) {
                     list.add(i);
                 }
                 Collections.shuffle(list);
