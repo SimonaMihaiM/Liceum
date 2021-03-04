@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.iulia.proiecttrivia">
+    package="ro.raduca.liceum">
 
     <application
         android:allowBackup="true"
@@ -10,32 +10,32 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".Settings"
+            android:name="ro.raduca.liceum.Settings"
             android:label="Setări"
-            android:parentActivityName=".Navigation"
+            android:parentActivityName="ro.raduca.liceum.Navigation"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Navigation"/>
+                android:value="ro.raduca.liceum.Navigation"/>
         </activity>
 
         <activity
-            android:name=".ScoreCard"
+            android:name="ro.raduca.liceum.ScoreCard"
             android:label="Cel mai bun scor"
-            android:parentActivityName=".Navigation"
+            android:parentActivityName="ro.raduca.liceum.Navigation"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Navigation"/>
+                android:value="ro.raduca.liceum.Navigation"/>
         </activity>
 
         <activity
-            android:name=".Result"
+            android:name="ro.raduca.liceum.Result"
             android:label="Result">
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name="ro.raduca.liceum.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -46,24 +46,24 @@
         </activity>
 
         <activity
-            android:name=".Navigation"
+            android:name="ro.raduca.liceum.Navigation"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="ro.raduca.liceum.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
+                android:value="ro.raduca.liceum.MainActivity"/>
         </activity>
 
         <activity
-            android:name=".Questions"
+            android:name="ro.raduca.liceum.Questions"
             android:label="Întrebări"
-            android:parentActivityName=".Navigation"
+            android:parentActivityName="ro.raduca.liceum.Navigation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Navigation"/>
+                android:value="ro.raduca.liceum.Navigation"/>
 
 
         </activity>

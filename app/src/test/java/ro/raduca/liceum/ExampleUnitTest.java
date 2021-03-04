@@ -1,4 +1,4 @@
-package com.iulia.proiecttrivia;
+package ro.raduca.liceum;
 
 import org.junit.Test;
 

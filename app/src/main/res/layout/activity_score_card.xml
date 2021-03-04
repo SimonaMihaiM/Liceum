@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ScoreCard">
+    tools:context="ro.raduca.liceum.ScoreCard">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".ScoreCard">
+        tools:context="ro.raduca.liceum.ScoreCard">
 
         <LinearLayout
             android:layout_width="match_parent"

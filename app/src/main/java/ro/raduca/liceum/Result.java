@@ -1,10 +1,12 @@
-package com.iulia.proiecttrivia;
+package ro.raduca.liceum;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import ro.raduca.liceum.R;
 
 public class Result extends AppCompatActivity {
 

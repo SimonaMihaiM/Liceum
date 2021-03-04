@@ -1,4 +1,4 @@
-package com.iulia.proiecttrivia;
+package ro.raduca.liceum;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
+import ro.raduca.liceum.R;
 
 
 public class Navigation extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -23,7 +24,7 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
     TextView nav_name_header, nav_email_header;
     Button c1, c2, c3, c4, c5, c6, c7, c8, c9, c10;
     private ProgressDialog progressBar;
-    public final static String Message = "com.iulia.MESSAGE";
+    public final static String Message = "ro.raduca.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

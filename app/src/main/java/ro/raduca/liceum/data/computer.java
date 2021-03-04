@@ -1,4 +1,4 @@
-package com.iulia.proiecttrivia.data;
+package ro.raduca.liceum.data;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -6,18 +6,17 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Locale;
 
-public class sports extends SQLiteOpenHelper {
+public class computer extends SQLiteOpenHelper {
 
-    private static final String Database_path = "/data/data/com.iulia.proiecttrivia/databases/";
-    private static final String Database_name = "sports.db"; // nume database din assets
-    private static final String Table_name = "sports"; // numele tabelului
+    private static final String Database_path = "/data/data/ro.raduca.liceum/databases/";
+    private static final String Database_name = "computer.db"; // nume database din assets
+    private static final String Table_name = "computer"; // numele tabelului
     private static final String uid = "_id"; // numele primei coloane
     private static final String Question = "Question"; // numele coloanei 2
     private static final String OptionA = "OptionA"; // numele coloanei 3
@@ -29,7 +28,7 @@ public class sports extends SQLiteOpenHelper {
     public SQLiteDatabase sqlite; // obiect de tip SQLiteDatabase
     private Context context; // obiect de tip context pentru a prelua din Questions
 
-    public sports(Context context) {
+    public computer(Context context) {
         super(context, Database_name, null, version);
         this.context = context;
     }

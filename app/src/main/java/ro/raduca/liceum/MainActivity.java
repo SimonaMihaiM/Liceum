@@ -1,4 +1,4 @@
-package com.iulia.proiecttrivia;
+package ro.raduca.liceum;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,7 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.net.Inet4Address;
+import ro.raduca.liceum.R;
 
 public class MainActivity extends AppCompatActivity {
 

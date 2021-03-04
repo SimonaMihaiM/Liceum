@@ -1,4 +1,4 @@
-package com.iulia.proiecttrivia;
+package ro.raduca.liceum;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.iulia.proiecttrivia", appContext.getPackageName());
+        assertEquals("ro.raduca.liceum", appContext.getPackageName());
     }
 }

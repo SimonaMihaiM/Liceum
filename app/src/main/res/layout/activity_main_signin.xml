@@ -7,7 +7,7 @@
     android:background="#9F56B4"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".MainActivity">
+    tools:context="ro.raduca.liceum.MainActivity">
 
 
     <TextView

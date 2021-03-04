@@ -1,4 +1,4 @@
-package com.iulia.proiecttrivia;
+package ro.raduca.liceum;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.android.material.snackbar.Snackbar;
+import ro.raduca.liceum.R;
 
 public class Settings extends AppCompatActivity {
 

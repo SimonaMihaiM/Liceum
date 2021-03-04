@@ -1,4 +1,4 @@
-package com.iulia.proiecttrivia;
+package ro.raduca.liceum;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,16 +13,18 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.snackbar.Snackbar;
-import com.iulia.proiecttrivia.data.books;
-import com.iulia.proiecttrivia.data.capitals;
-import com.iulia.proiecttrivia.data.computer;
-import com.iulia.proiecttrivia.data.currency;
-import com.iulia.proiecttrivia.data.english;
-import com.iulia.proiecttrivia.data.general;
-import com.iulia.proiecttrivia.data.inventions;
-import com.iulia.proiecttrivia.data.maths;
-import com.iulia.proiecttrivia.data.science;
-import com.iulia.proiecttrivia.data.sports;
+import ro.raduca.liceum.R;
+
+import ro.raduca.liceum.data.books;
+import ro.raduca.liceum.data.capitals;
+import ro.raduca.liceum.data.computer;
+import ro.raduca.liceum.data.currency;
+import ro.raduca.liceum.data.english;
+import ro.raduca.liceum.data.general;
+import ro.raduca.liceum.data.inventions;
+import ro.raduca.liceum.data.maths;
+import ro.raduca.liceum.data.science;
+import ro.raduca.liceum.data.sports;
 
 import java.util.ArrayList;
 import java.util.Collections;

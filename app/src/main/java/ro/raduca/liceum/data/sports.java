@@ -1,4 +1,4 @@
-package com.iulia.proiecttrivia.data;
+package ro.raduca.liceum.data;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -6,17 +6,18 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Locale;
 
-public class maths extends SQLiteOpenHelper {
+public class sports extends SQLiteOpenHelper {
 
-    private static final String Database_path = "/data/data/com.iulia.proiecttrivia/databases/";
-    private static final String Database_name = "maths.db"; // nume database din assets
-    private static final String Table_name = "maths"; // numele tabelului
+    private static final String Database_path = "/data/data/ro.raduca.liceum/databases/";
+    private static final String Database_name = "sports.db"; // nume database din assets
+    private static final String Table_name = "sports"; // numele tabelului
     private static final String uid = "_id"; // numele primei coloane
     private static final String Question = "Question"; // numele coloanei 2
     private static final String OptionA = "OptionA"; // numele coloanei 3
@@ -28,7 +29,7 @@ public class maths extends SQLiteOpenHelper {
     public SQLiteDatabase sqlite; // obiect de tip SQLiteDatabase
     private Context context; // obiect de tip context pentru a prelua din Questions
 
-    public maths(Context context) {
+    public sports(Context context) {
         super(context, Database_name, null, version);
         this.context = context;
     }
@@ -100,7 +101,7 @@ public class maths extends SQLiteOpenHelper {
 
     public String readQuestion(int i){
         String qField;
-        Cursor cursor = sqlite.rawQuery(" SELECT " + Question + " FROM " + Table_name + " WHERE "
+        Cursor cursor = sqlite.rawQuery("SELECT " + Question + " FROM " + Table_name + " WHERE "
                 + uid + " = " + i + "", null);
 
         if (cursor.moveToFirst()) {

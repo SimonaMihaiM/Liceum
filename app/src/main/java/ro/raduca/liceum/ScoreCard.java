@@ -1,4 +1,4 @@
-package com.iulia.proiecttrivia;
+package ro.raduca.liceum;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
+
+import ro.raduca.liceum.R;
 
 
 public class ScoreCard extends AppCompatActivity {
