@@ -52,8 +52,8 @@ public class Questions extends AppCompatActivity {
     Science science;
 
     public int visibility = 0, c1 = 0, c2 = 0, c3 = 0, c4 = 0, c5 = 0, c6 = 0, c7 = 0, c8 = 0, c9 = 0, c10 = 0;
-    public int i, j = 0, k, l = 0;
-    String global = null, Ques, Opta, Optb, Optc, Optd;
+    public int currentCategoryIndex, questionListIndex = 0, numberQuestions, currentScore = 0;
+    String currentAnswer = null, currentQuestion, currentOptionA, currentOptionB, currentOptionC, currentOptionD;
     ArrayList<Integer> list = new ArrayList<>();
     Toast toast;
 
@@ -141,7 +141,7 @@ public class Questions extends AppCompatActivity {
     public void onClick(View v) {
 
         final SharedPreferences shared = getSharedPreferences("Score", Context.MODE_PRIVATE);
-        k++;
+        numberQuestions++;
 
         if (visibility == 0) {
             // afisarea butoanelor care erau invizibile
@@ -166,35 +166,35 @@ public class Questions extends AppCompatActivity {
                 public void onFinish() {
                     toast.cancel();
                     SharedPreferences.Editor editor = shared.edit();
-                    editor.putInt("Questions", k).apply();
+                    editor.putInt("Questions", numberQuestions).apply();
 
-                    if (get.equals("c1") && shared.getInt("Computer", 0) < l)
-                        editor.putInt("Computer", l * 10).apply();
+                    if (get.equals("c1") && shared.getInt("Computer", 0) < currentScore)
+                        editor.putInt("Computer", currentScore * 10).apply();
                     else if (get.equals("c2") && shared.getInt("Sports", 0) < 1)
-                        editor.putInt("Sports", l * 10).apply();
+                        editor.putInt("Sports", currentScore * 10).apply();
                     else if (get.equals("c3") && shared.getInt("Inventions", 0) < 1)
-                        editor.putInt("Inventions", l * 10).apply();
+                        editor.putInt("Inventions", currentScore * 10).apply();
                     else if (get.equals("c4") && shared.getInt("General", 0) < 1)
-                        editor.putInt("General", l * 10).apply();
+                        editor.putInt("General", currentScore * 10).apply();
                     else if (get.equals("c5") && shared.getInt("Science", 0) < 1)
-                        editor.putInt("Science", l * 10).apply();
+                        editor.putInt("Science", currentScore * 10).apply();
                     else if (get.equals("c6") && shared.getInt("English", 0) < 1)
-                        editor.putInt("English", l * 10).apply();
+                        editor.putInt("English", currentScore * 10).apply();
                     else if (get.equals("c7") && shared.getInt("Books", 0) < 1)
-                        editor.putInt("Books", l * 10).apply();
+                        editor.putInt("Books", currentScore * 10).apply();
                     else if (get.equals("c8") && shared.getInt("Maths", 0) < 1)
-                        editor.putInt("Maths", l * 10).apply();
+                        editor.putInt("Maths", currentScore * 10).apply();
                     else if (get.equals("c9") && shared.getInt("Capitals", 0) < 1)
-                        editor.putInt("Capitals", l * 10).apply();
+                        editor.putInt("Capitals", currentScore * 10).apply();
                     else if (get.equals("c10") && shared.getInt("Currency", 0) < 1)
-                        editor.putInt("Currency", l * 10).apply();
+                        editor.putInt("Currency", currentScore * 10).apply();
 
                     progressBar.setProgress(0);
 
                     if (variable == 0) {
                         Intent intent = new Intent(Questions.this, Result.class);
-                        intent.putExtra("correct", l);
-                        intent.putExtra("attemp", k);
+                        intent.putExtra("correct", currentScore);
+                        intent.putExtra("attemp", numberQuestions);
                         startActivity(intent);
                         finish();
                     }
@@ -202,40 +202,40 @@ public class Questions extends AppCompatActivity {
             }.start();
         }
 
-        if (global != null) {
-            if (global.equals("A")) {
+        if (currentAnswer != null) {
+            if (currentAnswer.equals("A")) {
                 if (v.getId() == R.id.OptionA) {
                     Snackbar.make(v, "         Correct ☺", Snackbar.LENGTH_SHORT).show();
-                    l++;
+                    currentScore++;
                 } else {
-                    Snackbar.make(v, "Incorrect\t      Answer : " + Opta + "", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(v, "Incorrect\t      Answer : " + currentOptionA + "", Snackbar.LENGTH_SHORT).show();
                 }
-            } else if (global.equals("B")) {
+            } else if (currentAnswer.equals("B")) {
                 if (v.getId() == R.id.OptionB) {
                     //Here we use the snackbar because if we use the toast then they will be stacked an user cannot idetify which questions answer is it showing
                     Snackbar.make(v, "         Correct ☺", Snackbar.LENGTH_SHORT).show();
 
-                    l++;
+                    currentScore++;
                 } else {
-                    Snackbar.make(v, "Incorrect\t      Answer : " + Optb + "", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(v, "Incorrect\t      Answer : " + currentOptionB + "", Snackbar.LENGTH_SHORT).show();
                 }
-            } else if (global.equals("C")) {
+            } else if (currentAnswer.equals("C")) {
                 if (v.getId() == R.id.OptionC) {
                     //Here we use the snackbar because if we use the toast then they will be stacked an user cannot idetify which questions answer is it showing
                     Snackbar.make(v, "         Correct ☺", Snackbar.LENGTH_SHORT).show();
 
-                    l++;
+                    currentScore++;
                 } else {
-                    Snackbar.make(v, "Incorrect\t      Answer : " + Optc + "", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(v, "Incorrect\t      Answer : " + currentOptionC + "", Snackbar.LENGTH_SHORT).show();
                 }
-            } else if (global.equals("D")) {
+            } else if (currentAnswer.equals("D")) {
                 if (v.getId() == R.id.OptionD) {
                     //Here we use the snackbar because if we use the toast then they will be stacked an user cannot idetify which questions answer is it showing
                     Snackbar.make(v, "         Correct ☺", Snackbar.LENGTH_SHORT).show();
 
-                    l++;
+                    currentScore++;
                 } else {
-                    Snackbar.make(v, "Incorrect\t      Answer : " + Optd + "", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(v, "Incorrect\t      Answer : " + currentOptionD + "", Snackbar.LENGTH_SHORT).show();
                 }
             }
         }
@@ -243,171 +243,171 @@ public class Questions extends AppCompatActivity {
         if (get.equals("c1")) {
 
             if (c1 == 0) {
-                for (i = 1; i < 3; i++) {
-                    list.add(i);
+                for (currentCategoryIndex = 1; currentCategoryIndex <= 20; currentCategoryIndex++) {
+                    list.add(currentCategoryIndex);
                 }
                 Collections.shuffle(list);
                 c1 = 1;
             }
 
-            Ques = computer.readQuestion(list.get(j));
-            Opta = computer.readOptionA(list.get(j));
-            Optb = computer.readOptionB(list.get(j));
-            Optc = computer.readOptionC(list.get(j));
-            Optd = computer.readOptionD(list.get(j));
-            global = computer.readAnswer(list.get(j++));
+            currentQuestion = computer.readQuestion(list.get(questionListIndex));
+            currentOptionA = computer.readOptionA(list.get(questionListIndex));
+            currentOptionB = computer.readOptionB(list.get(questionListIndex));
+            currentOptionC = computer.readOptionC(list.get(questionListIndex));
+            currentOptionD = computer.readOptionD(list.get(questionListIndex));
+            currentAnswer = computer.readAnswer(list.get(questionListIndex++));
         } else if (get.equals("c2")) {
 
             if (c2 == 0) {
-                for (i = 1; i < 20; i++) {
-                    list.add(i);
+                for (currentCategoryIndex = 1; currentCategoryIndex < 20; currentCategoryIndex++) {
+                    list.add(currentCategoryIndex);
                 }
                 Collections.shuffle(list);
                 c2 = 1;
             }
 
-            Ques = sports.readQuestion(list.get(j));
-            Opta = sports.readOptionA(list.get(j));
-            Optb = sports.readOptionB(list.get(j));
-            Optc = sports.readOptionC(list.get(j));
-            Optd = sports.readOptionD(list.get(j));
-            global = sports.readAnswer(list.get(j++));
+            currentQuestion = sports.readQuestion(list.get(questionListIndex));
+            currentOptionA = sports.readOptionA(list.get(questionListIndex));
+            currentOptionB = sports.readOptionB(list.get(questionListIndex));
+            currentOptionC = sports.readOptionC(list.get(questionListIndex));
+            currentOptionD = sports.readOptionD(list.get(questionListIndex));
+            currentAnswer = sports.readAnswer(list.get(questionListIndex++));
         } else if (get.equals("c3")) {
 
             if (c3 == 0) {
-                for (i = 1; i < 20; i++) {
-                    list.add(i);
+                for (currentCategoryIndex = 1; currentCategoryIndex < 20; currentCategoryIndex++) {
+                    list.add(currentCategoryIndex);
                 }
                 Collections.shuffle(list);
                 c3 = 1;
             }
 
-            Ques = inventions.readQuestion(list.get(j));
-            Opta = inventions.readOptionA(list.get(j));
-            Optb = inventions.readOptionB(list.get(j));
-            Optc = inventions.readOptionC(list.get(j));
-            Optd = inventions.readOptionD(list.get(j));
-            global = inventions.readAnswer(list.get(j++));
+            currentQuestion = inventions.readQuestion(list.get(questionListIndex));
+            currentOptionA = inventions.readOptionA(list.get(questionListIndex));
+            currentOptionB = inventions.readOptionB(list.get(questionListIndex));
+            currentOptionC = inventions.readOptionC(list.get(questionListIndex));
+            currentOptionD = inventions.readOptionD(list.get(questionListIndex));
+            currentAnswer = inventions.readAnswer(list.get(questionListIndex++));
         } else if (get.equals("c4")) {
 
             if (c4 == 0) {
-                for (i = 1; i < 40; i++) {
-                    list.add(i);
+                for (currentCategoryIndex = 1; currentCategoryIndex < 40; currentCategoryIndex++) {
+                    list.add(currentCategoryIndex);
                 }
                 Collections.shuffle(list);
                 c4 = 1;
             }
 
-            Ques = general.readQuestion(list.get(j));
-            Opta = general.readOptionA(list.get(j));
-            Optb = general.readOptionB(list.get(j));
-            Optc = general.readOptionC(list.get(j));
-            Optd = general.readOptionD(list.get(j));
-            global = general.readAnswer(list.get(j++));
+            currentQuestion = general.readQuestion(list.get(questionListIndex));
+            currentOptionA = general.readOptionA(list.get(questionListIndex));
+            currentOptionB = general.readOptionB(list.get(questionListIndex));
+            currentOptionC = general.readOptionC(list.get(questionListIndex));
+            currentOptionD = general.readOptionD(list.get(questionListIndex));
+            currentAnswer = general.readAnswer(list.get(questionListIndex++));
         } else if (get.equals("c5")) {
 
             if (c5 == 0) {
-                for (i = 1; i < 20; i++) {
-                    list.add(i);
+                for (currentCategoryIndex = 1; currentCategoryIndex < 20; currentCategoryIndex++) {
+                    list.add(currentCategoryIndex);
                 }
                 Collections.shuffle(list);
                 c5 = 1;
             }
 
-            Ques = science.readQuestion(list.get(j));
-            Opta = science.readOptionA(list.get(j));
-            Optb = science.readOptionB(list.get(j));
-            Optc = science.readOptionC(list.get(j));
-            Optd = science.readOptionD(list.get(j));
-            global = science.readAnswer(list.get(j++));
+            currentQuestion = science.readQuestion(list.get(questionListIndex));
+            currentOptionA = science.readOptionA(list.get(questionListIndex));
+            currentOptionB = science.readOptionB(list.get(questionListIndex));
+            currentOptionC = science.readOptionC(list.get(questionListIndex));
+            currentOptionD = science.readOptionD(list.get(questionListIndex));
+            currentAnswer = science.readAnswer(list.get(questionListIndex++));
         } else if (get.equals("c6")) {
             // romana
             if (c6 == 0) {
                 // 60
-                for (i = 1; i <= 3; i++) {
-                    list.add(i);
+                for (currentCategoryIndex = 1; currentCategoryIndex <= 3; currentCategoryIndex++) {
+                    list.add(currentCategoryIndex);
                 }
                 Collections.shuffle(list);
                 c6 = 1;
             }
 
-            Ques = english.readQuestion(list.get(j));
-            Opta = english.readOptionA(list.get(j));
-            Optb = english.readOptionB(list.get(j));
-            Optc = english.readOptionC(list.get(j));
-            Optd = english.readOptionD(list.get(j));
-            global = english.readAnswer(list.get(j++));
+            currentQuestion = english.readQuestion(list.get(questionListIndex));
+            currentOptionA = english.readOptionA(list.get(questionListIndex));
+            currentOptionB = english.readOptionB(list.get(questionListIndex));
+            currentOptionC = english.readOptionC(list.get(questionListIndex));
+            currentOptionD = english.readOptionD(list.get(questionListIndex));
+            currentAnswer = english.readAnswer(list.get(questionListIndex++));
         } else if (get.equals("c7")) {
 
             if (c7 == 0) {
-                for (i = 1; i < 20; i++) {
-                    list.add(i);
+                for (currentCategoryIndex = 1; currentCategoryIndex < 20; currentCategoryIndex++) {
+                    list.add(currentCategoryIndex);
                 }
                 Collections.shuffle(list);
                 c7 = 1;
             }
 
-            Ques = books.readQuestion(list.get(j));
-            Opta = books.readOptionA(list.get(j));
-            Optb = books.readOptionB(list.get(j));
-            Optc = books.readOptionC(list.get(j));
-            Optd = books.readOptionD(list.get(j));
-            global = books.readAnswer(list.get(j++));
+            currentQuestion = books.readQuestion(list.get(questionListIndex));
+            currentOptionA = books.readOptionA(list.get(questionListIndex));
+            currentOptionB = books.readOptionB(list.get(questionListIndex));
+            currentOptionC = books.readOptionC(list.get(questionListIndex));
+            currentOptionD = books.readOptionD(list.get(questionListIndex));
+            currentAnswer = books.readAnswer(list.get(questionListIndex++));
         } else if (get.equals("c8")) {
 
             if (c8 == 0) {
-                for (i = 1; i < 20; i++) {
-                    list.add(i);
+                for (currentCategoryIndex = 1; currentCategoryIndex < 20; currentCategoryIndex++) {
+                    list.add(currentCategoryIndex);
                 }
                 Collections.shuffle(list);
                 c8 = 1;
             }
 
-            Ques = maths.readQuestion(list.get(j));
-            Opta = maths.readOptionA(list.get(j));
-            Optb = maths.readOptionB(list.get(j));
-            Optc = maths.readOptionC(list.get(j));
-            Optd = maths.readOptionD(list.get(j));
-            global = maths.readAnswer(list.get(j++));
+            currentQuestion = maths.readQuestion(list.get(questionListIndex));
+            currentOptionA = maths.readOptionA(list.get(questionListIndex));
+            currentOptionB = maths.readOptionB(list.get(questionListIndex));
+            currentOptionC = maths.readOptionC(list.get(questionListIndex));
+            currentOptionD = maths.readOptionD(list.get(questionListIndex));
+            currentAnswer = maths.readAnswer(list.get(questionListIndex++));
         } else if (get.equals("c9")) {
 
             if (c9 == 0) {
-                for (i = 1; i < 20; i++) {
-                    list.add(i);
+                for (currentCategoryIndex = 1; currentCategoryIndex < 20; currentCategoryIndex++) {
+                    list.add(currentCategoryIndex);
                 }
                 Collections.shuffle(list);
                 c9 = 1;
             }
 
-            Ques = capitals.readQuestion(list.get(j));
-            Opta = capitals.readOptionA(list.get(j));
-            Optb = capitals.readOptionB(list.get(j));
-            Optc = capitals.readOptionC(list.get(j));
-            Optd = capitals.readOptionD(list.get(j));
-            global = capitals.readAnswer(list.get(j++));
+            currentQuestion = capitals.readQuestion(list.get(questionListIndex));
+            currentOptionA = capitals.readOptionA(list.get(questionListIndex));
+            currentOptionB = capitals.readOptionB(list.get(questionListIndex));
+            currentOptionC = capitals.readOptionC(list.get(questionListIndex));
+            currentOptionD = capitals.readOptionD(list.get(questionListIndex));
+            currentAnswer = capitals.readAnswer(list.get(questionListIndex++));
         } else if (get.equals("c10")) {
 
             if (c10 == 0) {
-                for (i = 1; i < 20; i++) {
-                    list.add(i);
+                for (currentCategoryIndex = 1; currentCategoryIndex < 20; currentCategoryIndex++) {
+                    list.add(currentCategoryIndex);
                 }
                 Collections.shuffle(list);
                 c10 = 1;
             }
 
-            Ques = currency.readQuestion(list.get(j));
-            Opta = currency.readOptionA(list.get(j));
-            Optb = currency.readOptionB(list.get(j));
-            Optc = currency.readOptionC(list.get(j));
-            Optd = currency.readOptionD(list.get(j));
-            global = currency.readAnswer(list.get(j++));
+            currentQuestion = currency.readQuestion(list.get(questionListIndex));
+            currentOptionA = currency.readOptionA(list.get(questionListIndex));
+            currentOptionB = currency.readOptionB(list.get(questionListIndex));
+            currentOptionC = currency.readOptionC(list.get(questionListIndex));
+            currentOptionD = currency.readOptionD(list.get(questionListIndex));
+            currentAnswer = currency.readAnswer(list.get(questionListIndex++));
         }
 
-        ques.setText("" + Ques);
-        OptA.setText(Opta);
-        OptB.setText(Optb);
-        OptC.setText(Optc);
-        OptD.setText(Optd);
+        ques.setText("" + currentQuestion);
+        OptA.setText(currentOptionA);
+        OptB.setText(currentOptionB);
+        OptC.setText(currentOptionC);
+        OptD.setText(currentOptionD);
     }
 
     @Override
