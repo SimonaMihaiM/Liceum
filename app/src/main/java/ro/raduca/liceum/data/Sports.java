@@ -13,7 +13,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Locale;
 
-public class sports extends SQLiteOpenHelper {
+public class Sports extends SQLiteOpenHelper {
 
     private static final String Database_path = "/data/data/ro.raduca.liceum/databases/";
     private static final String Database_name = "sports.db"; // nume database din assets
@@ -29,7 +29,7 @@ public class sports extends SQLiteOpenHelper {
     public SQLiteDatabase sqlite; // obiect de tip SQLiteDatabase
     private Context context; // obiect de tip context pentru a prelua din Questions
 
-    public sports(Context context) {
+    public Sports(Context context) {
         super(context, Database_name, null, version);
         this.context = context;
     }

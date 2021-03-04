@@ -10,24 +10,25 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import com.google.android.material.snackbar.Snackbar;
-import ro.raduca.liceum.R;
 
-import ro.raduca.liceum.data.books;
-import ro.raduca.liceum.data.capitals;
-import ro.raduca.liceum.data.computer;
-import ro.raduca.liceum.data.currency;
-import ro.raduca.liceum.data.english;
-import ro.raduca.liceum.data.general;
-import ro.raduca.liceum.data.inventions;
-import ro.raduca.liceum.data.maths;
-import ro.raduca.liceum.data.science;
-import ro.raduca.liceum.data.sports;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+import ro.raduca.liceum.data.Books;
+import ro.raduca.liceum.data.Capitals;
+import ro.raduca.liceum.data.Computer;
+import ro.raduca.liceum.data.Currency;
+import ro.raduca.liceum.data.English;
+import ro.raduca.liceum.data.General;
+import ro.raduca.liceum.data.Inventions;
+import ro.raduca.liceum.data.Maths;
+import ro.raduca.liceum.data.Science;
+import ro.raduca.liceum.data.Sports;
 
 public class Questions extends AppCompatActivity {
 
@@ -39,16 +40,16 @@ public class Questions extends AppCompatActivity {
     ProgressBar progressBar;
 
     // obiecte din diferite clase
-    books Books;
-    sports Sports;
-    currency Currency;
-    computer Computer;
-    capitals Capitals;
-    english English;
-    general General;
-    inventions Inventions;
-    maths Maths;
-    science Science;
+    Books books;
+    Sports sports;
+    Currency currency;
+    Computer computer;
+    Capitals capitals;
+    English english;
+    General general;
+    Inventions inventions;
+    Maths maths;
+    Science science;
 
     public int visibility = 0, c1 = 0, c2 = 0, c3 = 0, c4 = 0, c5 = 0, c6 = 0, c7 = 0, c8 = 0, c9 = 0, c10 = 0;
     public int i, j = 0, k, l = 0;
@@ -79,55 +80,55 @@ public class Questions extends AppCompatActivity {
 
         // legarea bazelor de date cu clasa Questions
 
-        Books = new books(this);
-        Books.createDatabase();
-        Books.openDatabase();
-        Books.getWritableDatabase();
+        books = new Books(this);
+        books.createDatabase();
+        books.openDatabase();
+        books.getWritableDatabase();
 
-        Capitals = new capitals(this);
-        Capitals.createDatabase();
-        Capitals.openDatabase();
-        Capitals.getWritableDatabase();
+        capitals = new Capitals(this);
+        capitals.createDatabase();
+        capitals.openDatabase();
+        capitals.getWritableDatabase();
 
-        Computer = new computer(this);
-        Computer.createDatabase();
-        Computer.openDatabase();
-        Computer.getWritableDatabase();
+        computer = new Computer(this);
+        computer.createDatabase();
+        computer.openDatabase();
+        computer.getWritableDatabase();
 
-        Currency = new currency(this);
-        Currency.createDatabase();
-        Currency.openDatabase();
-        Currency.getWritableDatabase();
+        currency = new Currency(this);
+        currency.createDatabase();
+        currency.openDatabase();
+        currency.getWritableDatabase();
 
-        English = new english(this);
-        English.createDatabase();
-        English.openDatabase();
-        English.getWritableDatabase();
+        english = new English(this);
+        english.createDatabase();
+        english.openDatabase();
+        english.getWritableDatabase();
 
-        General = new general(this);
-        General.createDatabase();
-        General.openDatabase();
-        General.getWritableDatabase();
+        general = new General(this);
+        general.createDatabase();
+        general.openDatabase();
+        general.getWritableDatabase();
 
-        Inventions = new inventions(this);
-        Inventions.createDatabase();
-        Inventions.openDatabase();
-        Inventions.getWritableDatabase();
+        inventions = new Inventions(this);
+        inventions.createDatabase();
+        inventions.openDatabase();
+        inventions.getWritableDatabase();
 
-        Maths = new maths(this);
-        Maths.createDatabase();
-        Maths.openDatabase();
-        Maths.getWritableDatabase();
+        maths = new Maths(this);
+        maths.createDatabase();
+        maths.openDatabase();
+        maths.getWritableDatabase();
 
-        Science = new science(this);
-        Science.createDatabase();
-        Science.openDatabase();
-        Science.getWritableDatabase();
+        science = new Science(this);
+        science.createDatabase();
+        science.openDatabase();
+        science.getWritableDatabase();
 
-        Sports = new sports(this);
-        Sports.createDatabase();
-        Sports.openDatabase();
-        Sports.getWritableDatabase();
+        sports = new Sports(this);
+        sports.createDatabase();
+        sports.openDatabase();
+        sports.getWritableDatabase();
 
         OptA = findViewById(R.id.OptionA);
         OptB = findViewById(R.id.OptionB);
@@ -152,13 +153,13 @@ public class Questions extends AppCompatActivity {
             progressBar.setVisibility(View.VISIBLE);
             visibility = 1;
 
-            new CountDownTimer(20000, 1000) {
-                int i = 100;
+            new CountDownTimer(200000, 1000) {
+                int progressBarValue = 100;
 
                 @Override
                 public void onTick(long millisUntilFinished) {
-                    i = i - 5;
-                    progressBar.setProgress(i);
+                    progressBarValue = progressBarValue - 5;
+                    progressBar.setProgress(progressBarValue);
                 }
 
                 @Override
@@ -242,19 +243,19 @@ public class Questions extends AppCompatActivity {
         if (get.equals("c1")) {
 
             if (c1 == 0) {
-                for (i = 1; i < 20; i++) {
+                for (i = 1; i < 3; i++) {
                     list.add(i);
                 }
                 Collections.shuffle(list);
                 c1 = 1;
             }
 
-            Ques = Computer.readQuestion(list.get(j));
-            Opta = Computer.readOptionA(list.get(j));
-            Optb = Computer.readOptionB(list.get(j));
-            Optc = Computer.readOptionC(list.get(j));
-            Optd = Computer.readOptionD(list.get(j));
-            global = Computer.readAnswer(list.get(j++));
+            Ques = computer.readQuestion(list.get(j));
+            Opta = computer.readOptionA(list.get(j));
+            Optb = computer.readOptionB(list.get(j));
+            Optc = computer.readOptionC(list.get(j));
+            Optd = computer.readOptionD(list.get(j));
+            global = computer.readAnswer(list.get(j++));
         } else if (get.equals("c2")) {
 
             if (c2 == 0) {
@@ -265,12 +266,12 @@ public class Questions extends AppCompatActivity {
                 c2 = 1;
             }
 
-            Ques = Sports.readQuestion(list.get(j));
-            Opta = Sports.readOptionA(list.get(j));
-            Optb = Sports.readOptionB(list.get(j));
-            Optc = Sports.readOptionC(list.get(j));
-            Optd = Sports.readOptionD(list.get(j));
-            global = Sports.readAnswer(list.get(j++));
+            Ques = sports.readQuestion(list.get(j));
+            Opta = sports.readOptionA(list.get(j));
+            Optb = sports.readOptionB(list.get(j));
+            Optc = sports.readOptionC(list.get(j));
+            Optd = sports.readOptionD(list.get(j));
+            global = sports.readAnswer(list.get(j++));
         } else if (get.equals("c3")) {
 
             if (c3 == 0) {
@@ -281,12 +282,12 @@ public class Questions extends AppCompatActivity {
                 c3 = 1;
             }
 
-            Ques = Inventions.readQuestion(list.get(j));
-            Opta = Inventions.readOptionA(list.get(j));
-            Optb = Inventions.readOptionB(list.get(j));
-            Optc = Inventions.readOptionC(list.get(j));
-            Optd = Inventions.readOptionD(list.get(j));
-            global = Inventions.readAnswer(list.get(j++));
+            Ques = inventions.readQuestion(list.get(j));
+            Opta = inventions.readOptionA(list.get(j));
+            Optb = inventions.readOptionB(list.get(j));
+            Optc = inventions.readOptionC(list.get(j));
+            Optd = inventions.readOptionD(list.get(j));
+            global = inventions.readAnswer(list.get(j++));
         } else if (get.equals("c4")) {
 
             if (c4 == 0) {
@@ -297,12 +298,12 @@ public class Questions extends AppCompatActivity {
                 c4 = 1;
             }
 
-            Ques = General.readQuestion(list.get(j));
-            Opta = General.readOptionA(list.get(j));
-            Optb = General.readOptionB(list.get(j));
-            Optc = General.readOptionC(list.get(j));
-            Optd = General.readOptionD(list.get(j));
-            global = General.readAnswer(list.get(j++));
+            Ques = general.readQuestion(list.get(j));
+            Opta = general.readOptionA(list.get(j));
+            Optb = general.readOptionB(list.get(j));
+            Optc = general.readOptionC(list.get(j));
+            Optd = general.readOptionD(list.get(j));
+            global = general.readAnswer(list.get(j++));
         } else if (get.equals("c5")) {
 
             if (c5 == 0) {
@@ -313,28 +314,29 @@ public class Questions extends AppCompatActivity {
                 c5 = 1;
             }
 
-            Ques = Science.readQuestion(list.get(j));
-            Opta = Science.readOptionA(list.get(j));
-            Optb = Science.readOptionB(list.get(j));
-            Optc = Science.readOptionC(list.get(j));
-            Optd = Science.readOptionD(list.get(j));
-            global = Science.readAnswer(list.get(j++));
+            Ques = science.readQuestion(list.get(j));
+            Opta = science.readOptionA(list.get(j));
+            Optb = science.readOptionB(list.get(j));
+            Optc = science.readOptionC(list.get(j));
+            Optd = science.readOptionD(list.get(j));
+            global = science.readAnswer(list.get(j++));
         } else if (get.equals("c6")) {
-
+            // romana
             if (c6 == 0) {
-                for (i = 1; i < 60; i++) {
+                // 60
+                for (i = 1; i <= 3; i++) {
                     list.add(i);
                 }
                 Collections.shuffle(list);
                 c6 = 1;
             }
 
-            Ques = English.readQuestion(list.get(j));
-            Opta = English.readOptionA(list.get(j));
-            Optb = English.readOptionB(list.get(j));
-            Optc = English.readOptionC(list.get(j));
-            Optd = English.readOptionD(list.get(j));
-            global = English.readAnswer(list.get(j++));
+            Ques = english.readQuestion(list.get(j));
+            Opta = english.readOptionA(list.get(j));
+            Optb = english.readOptionB(list.get(j));
+            Optc = english.readOptionC(list.get(j));
+            Optd = english.readOptionD(list.get(j));
+            global = english.readAnswer(list.get(j++));
         } else if (get.equals("c7")) {
 
             if (c7 == 0) {
@@ -345,12 +347,12 @@ public class Questions extends AppCompatActivity {
                 c7 = 1;
             }
 
-            Ques = Books.readQuestion(list.get(j));
-            Opta = Books.readOptionA(list.get(j));
-            Optb = Books.readOptionB(list.get(j));
-            Optc = Books.readOptionC(list.get(j));
-            Optd = Books.readOptionD(list.get(j));
-            global = Books.readAnswer(list.get(j++));
+            Ques = books.readQuestion(list.get(j));
+            Opta = books.readOptionA(list.get(j));
+            Optb = books.readOptionB(list.get(j));
+            Optc = books.readOptionC(list.get(j));
+            Optd = books.readOptionD(list.get(j));
+            global = books.readAnswer(list.get(j++));
         } else if (get.equals("c8")) {
 
             if (c8 == 0) {
@@ -361,12 +363,12 @@ public class Questions extends AppCompatActivity {
                 c8 = 1;
             }
 
-            Ques = Maths.readQuestion(list.get(j));
-            Opta = Maths.readOptionA(list.get(j));
-            Optb = Maths.readOptionB(list.get(j));
-            Optc = Maths.readOptionC(list.get(j));
-            Optd = Maths.readOptionD(list.get(j));
-            global = Maths.readAnswer(list.get(j++));
+            Ques = maths.readQuestion(list.get(j));
+            Opta = maths.readOptionA(list.get(j));
+            Optb = maths.readOptionB(list.get(j));
+            Optc = maths.readOptionC(list.get(j));
+            Optd = maths.readOptionD(list.get(j));
+            global = maths.readAnswer(list.get(j++));
         } else if (get.equals("c9")) {
 
             if (c9 == 0) {
@@ -377,12 +379,12 @@ public class Questions extends AppCompatActivity {
                 c9 = 1;
             }
 
-            Ques = Capitals.readQuestion(list.get(j));
-            Opta = Capitals.readOptionA(list.get(j));
-            Optb = Capitals.readOptionB(list.get(j));
-            Optc = Capitals.readOptionC(list.get(j));
-            Optd = Capitals.readOptionD(list.get(j));
-            global = Capitals.readAnswer(list.get(j++));
+            Ques = capitals.readQuestion(list.get(j));
+            Opta = capitals.readOptionA(list.get(j));
+            Optb = capitals.readOptionB(list.get(j));
+            Optc = capitals.readOptionC(list.get(j));
+            Optd = capitals.readOptionD(list.get(j));
+            global = capitals.readAnswer(list.get(j++));
         } else if (get.equals("c10")) {
 
             if (c10 == 0) {
@@ -393,12 +395,12 @@ public class Questions extends AppCompatActivity {
                 c10 = 1;
             }
 
-            Ques = Currency.readQuestion(list.get(j));
-            Opta = Currency.readOptionA(list.get(j));
-            Optb = Currency.readOptionB(list.get(j));
-            Optc = Currency.readOptionC(list.get(j));
-            Optd = Currency.readOptionD(list.get(j));
-            global = Currency.readAnswer(list.get(j++));
+            Ques = currency.readQuestion(list.get(j));
+            Opta = currency.readOptionA(list.get(j));
+            Optb = currency.readOptionB(list.get(j));
+            Optc = currency.readOptionC(list.get(j));
+            Optd = currency.readOptionD(list.get(j));
+            global = currency.readAnswer(list.get(j++));
         }
 
         ques.setText("" + Ques);
