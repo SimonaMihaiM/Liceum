@@ -47,12 +47,6 @@ public class Settings extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        //finish();
-    }
-
-    @Override
     protected void onPause() {
         super.onPause();
         SharedPreferences sp = getSharedPreferences("Score", Context.MODE_PRIVATE);
