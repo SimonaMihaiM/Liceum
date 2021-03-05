@@ -1,16 +1,8 @@
 <resources>
     <string name="app_name">Liceum</string>
     <string name="question_mark">question mark</string>
-    <string name="welcome">Welcome!</string>
-    <string name="password">Parola</string>
     <string name="show">SHOW</string>
-    <string name="forgot_password">Am uitat parola</string>
     <string name="sign_in">Intră</string>
-    <string name="play">Play</string>
-    <string name="statistics">Statistici</string>
-    <string name="attempted_questions">Întrebări încercate :</string>
-    <string name="correct">Corect :</string>
-    <string name="incorrect">Incorect :</string>
     <string name="improvement">Ai nevoie de îmbunătățire!</string>
     <string name="average">Ești un jucător mediu!</string>
     <string name="above_average">Ești un jucător peste medie!</string>
@@ -27,7 +19,6 @@
     <string name="capitals">Geografie</string>
     <string name="currency">Economie</string>
     <string name="reset_highscore">Resetare scor</string>
-    <string name="header">header</string>
     <string name="books">Biologie</string>
     <string name="scorecard">Tabelă de scor</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
