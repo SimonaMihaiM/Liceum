@@ -27,12 +27,12 @@ public class Questions extends AppCompatActivity {
     public int visibility = 0, c1 = 0, c2 = 0, c3 = 0, c4 = 0, c5 = 0, c6 = 0, c7 = 0, c8 = 0, c9 = 0, c10 = 0;
     public int currentCategoryIndex, questionListIndex = 0, numberQuestions, currentScore = 0;
     int variable = 0;
+    int maxQuestions = 10;
     TextView ques;
     Button OptA, OptB, OptC, OptD;
     Button play_button;
     String get;
     ProgressBar progressBar;
-    // obiecte din diferite clase
     ArrayMap<String, CategoryDatabase> databases;
     String currentAnswer = null, currentQuestion, currentOptionA, currentOptionB, currentOptionC, currentOptionD;
     ArrayList<Integer> list = new ArrayList<>();
@@ -194,177 +194,55 @@ public class Questions extends AppCompatActivity {
 
         switch (get) {
             case "c1":
-
-                if (c1 == 0) {
-                    for (currentCategoryIndex = 1; currentCategoryIndex <= 20; currentCategoryIndex++) {
-                        list.add(currentCategoryIndex);
-                    }
-                    Collections.shuffle(list);
-                    c1 = 1;
-                }
-
-                currentQuestion = databases.get("computer").readQuestion(list.get(questionListIndex));
-                currentOptionA = databases.get("computer").readOptionA(list.get(questionListIndex));
-                currentOptionB = databases.get("computer").readOptionB(list.get(questionListIndex));
-                currentOptionC = databases.get("computer").readOptionC(list.get(questionListIndex));
-                currentOptionD = databases.get("computer").readOptionD(list.get(questionListIndex));
-                currentAnswer = databases.get("computer").readAnswer(list.get(questionListIndex++));
+                setUIQuestionElements("computer");
                 break;
             case "c2":
-
-                if (c2 == 0) {
-                    for (currentCategoryIndex = 1; currentCategoryIndex < 20; currentCategoryIndex++) {
-                        list.add(currentCategoryIndex);
-                    }
-                    Collections.shuffle(list);
-                    c2 = 1;
-                }
-
-                currentQuestion = databases.get("sports").readQuestion(list.get(questionListIndex));
-                currentOptionA = databases.get("sports").readOptionA(list.get(questionListIndex));
-                currentOptionB = databases.get("sports").readOptionB(list.get(questionListIndex));
-                currentOptionC = databases.get("sports").readOptionC(list.get(questionListIndex));
-                currentOptionD = databases.get("sports").readOptionD(list.get(questionListIndex));
-                currentAnswer = databases.get("sports").readAnswer(list.get(questionListIndex++));
+                setUIQuestionElements("sports");
                 break;
             case "c3":
-
-                if (c3 == 0) {
-                    for (currentCategoryIndex = 1; currentCategoryIndex < 20; currentCategoryIndex++) {
-                        list.add(currentCategoryIndex);
-                    }
-                    Collections.shuffle(list);
-                    c3 = 1;
-                }
-
-                currentQuestion = databases.get("inventions").readQuestion(list.get(questionListIndex));
-                currentOptionA = databases.get("inventions").readOptionA(list.get(questionListIndex));
-                currentOptionB = databases.get("inventions").readOptionB(list.get(questionListIndex));
-                currentOptionC = databases.get("inventions").readOptionC(list.get(questionListIndex));
-                currentOptionD = databases.get("inventions").readOptionD(list.get(questionListIndex));
-                currentAnswer = databases.get("inventions").readAnswer(list.get(questionListIndex++));
+                setUIQuestionElements("inventions");
                 break;
             case "c4":
-
-                if (c4 == 0) {
-                    for (currentCategoryIndex = 1; currentCategoryIndex < 40; currentCategoryIndex++) {
-                        list.add(currentCategoryIndex);
-                    }
-                    Collections.shuffle(list);
-                    c4 = 1;
-                }
-
-                currentQuestion = databases.get("general").readQuestion(list.get(questionListIndex));
-                currentOptionA = databases.get("general").readOptionA(list.get(questionListIndex));
-                currentOptionB = databases.get("general").readOptionB(list.get(questionListIndex));
-                currentOptionC = databases.get("general").readOptionC(list.get(questionListIndex));
-                currentOptionD = databases.get("general").readOptionD(list.get(questionListIndex));
-                currentAnswer = databases.get("general").readAnswer(list.get(questionListIndex++));
+                setUIQuestionElements("general");
                 break;
             case "c5":
-
-                if (c5 == 0) {
-                    for (currentCategoryIndex = 1; currentCategoryIndex < 20; currentCategoryIndex++) {
-                        list.add(currentCategoryIndex);
-                    }
-                    Collections.shuffle(list);
-                    c5 = 1;
-                }
-
-                currentQuestion = databases.get("science").readQuestion(list.get(questionListIndex));
-                currentOptionA = databases.get("science").readOptionA(list.get(questionListIndex));
-                currentOptionB = databases.get("science").readOptionB(list.get(questionListIndex));
-                currentOptionC = databases.get("science").readOptionC(list.get(questionListIndex));
-                currentOptionD = databases.get("science").readOptionD(list.get(questionListIndex));
-                currentAnswer = databases.get("science").readAnswer(list.get(questionListIndex++));
+                setUIQuestionElements("science");
                 break;
             case "c6":
-                // romana
-                if (c6 == 0) {
-                    // 60
-                    for (currentCategoryIndex = 1; currentCategoryIndex <= 3; currentCategoryIndex++) {
-                        list.add(currentCategoryIndex);
-                    }
-                    Collections.shuffle(list);
-                    c6 = 1;
-                }
-
-                currentQuestion = databases.get("english").readQuestion(list.get(questionListIndex));
-                currentOptionA = databases.get("english").readOptionA(list.get(questionListIndex));
-                currentOptionB = databases.get("english").readOptionB(list.get(questionListIndex));
-                currentOptionC = databases.get("english").readOptionC(list.get(questionListIndex));
-                currentOptionD = databases.get("english").readOptionD(list.get(questionListIndex));
-                currentAnswer = databases.get("english").readAnswer(list.get(questionListIndex++));
+                setUIQuestionElements("english");
                 break;
             case "c7":
-
-                if (c7 == 0) {
-                    for (currentCategoryIndex = 1; currentCategoryIndex < 20; currentCategoryIndex++) {
-                        list.add(currentCategoryIndex);
-                    }
-                    Collections.shuffle(list);
-                    c7 = 1;
-                }
-
-                currentQuestion = databases.get("books").readQuestion(list.get(questionListIndex));
-                currentOptionA = databases.get("books").readOptionA(list.get(questionListIndex));
-                currentOptionB = databases.get("books").readOptionB(list.get(questionListIndex));
-                currentOptionC = databases.get("books").readOptionC(list.get(questionListIndex));
-                currentOptionD = databases.get("books").readOptionD(list.get(questionListIndex));
-                currentAnswer = databases.get("books").readAnswer(list.get(questionListIndex++));
+                setUIQuestionElements("books");
                 break;
             case "c8":
-
-                if (c8 == 0) {
-                    for (currentCategoryIndex = 1; currentCategoryIndex < 20; currentCategoryIndex++) {
-                        list.add(currentCategoryIndex);
-                    }
-                    Collections.shuffle(list);
-                    c8 = 1;
-                }
-
-                currentQuestion = databases.get("maths").readQuestion(list.get(questionListIndex));
-                currentOptionA = databases.get("maths").readOptionA(list.get(questionListIndex));
-                currentOptionB = databases.get("maths").readOptionB(list.get(questionListIndex));
-                currentOptionC = databases.get("maths").readOptionC(list.get(questionListIndex));
-                currentOptionD = databases.get("maths").readOptionD(list.get(questionListIndex));
-                currentAnswer = databases.get("maths").readAnswer(list.get(questionListIndex++));
+                setUIQuestionElements("maths");
                 break;
             case "c9":
-
-                if (c9 == 0) {
-                    for (currentCategoryIndex = 1; currentCategoryIndex < 20; currentCategoryIndex++) {
-                        list.add(currentCategoryIndex);
-                    }
-                    Collections.shuffle(list);
-                    c9 = 1;
-                }
-
-                currentQuestion = databases.get("capitals").readQuestion(list.get(questionListIndex));
-                currentOptionA = databases.get("capitals").readOptionA(list.get(questionListIndex));
-                currentOptionB = databases.get("capitals").readOptionB(list.get(questionListIndex));
-                currentOptionC = databases.get("capitals").readOptionC(list.get(questionListIndex));
-                currentOptionD = databases.get("capitals").readOptionD(list.get(questionListIndex));
-                currentAnswer = databases.get("capitals").readAnswer(list.get(questionListIndex++));
+                setUIQuestionElements("capitals");
                 break;
             case "c10":
-
-                if (c10 == 0) {
-                    for (currentCategoryIndex = 1; currentCategoryIndex < 20; currentCategoryIndex++) {
-                        list.add(currentCategoryIndex);
-                    }
-                    Collections.shuffle(list);
-                    c10 = 1;
-                }
-
-                currentQuestion = databases.get("currency").readQuestion(list.get(questionListIndex));
-                currentOptionA = databases.get("currency").readOptionA(list.get(questionListIndex));
-                currentOptionB = databases.get("currency").readOptionB(list.get(questionListIndex));
-                currentOptionC = databases.get("currency").readOptionC(list.get(questionListIndex));
-                currentOptionD = databases.get("currency").readOptionD(list.get(questionListIndex));
-                currentAnswer = databases.get("currency").readAnswer(list.get(questionListIndex++));
+                setUIQuestionElements("currency");
                 break;
         }
+
+
+    }
+
+    private void setUIQuestionElements(String databaseName) {
+        if (c10 == 0) {
+            for (currentCategoryIndex = 1; currentCategoryIndex < this.maxQuestions; currentCategoryIndex++) {
+                list.add(currentCategoryIndex);
+            }
+            Collections.shuffle(list);
+            c10 = 1;
+        }
+
+        currentQuestion = databases.get(databaseName).readQuestion(list.get(questionListIndex));
+        currentOptionA = databases.get(databaseName).readOptionA(list.get(questionListIndex));
+        currentOptionB = databases.get(databaseName).readOptionB(list.get(questionListIndex));
+        currentOptionC = databases.get(databaseName).readOptionC(list.get(questionListIndex));
+        currentOptionD = databases.get(databaseName).readOptionD(list.get(questionListIndex));
+        currentAnswer = databases.get(databaseName).readAnswer(list.get(questionListIndex++));
 
         ques.setText(currentQuestion);
         OptA.setText(currentOptionA);
