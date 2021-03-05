@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.ArrayMap;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -19,40 +20,20 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import ro.raduca.liceum.data.Books;
-import ro.raduca.liceum.data.Capitals;
-import ro.raduca.liceum.data.Computer;
-import ro.raduca.liceum.data.Currency;
-import ro.raduca.liceum.data.English;
-import ro.raduca.liceum.data.General;
-import ro.raduca.liceum.data.Inventions;
-import ro.raduca.liceum.data.Maths;
-import ro.raduca.liceum.data.Science;
-import ro.raduca.liceum.data.Sports;
+import ro.raduca.liceum.data.CategoryDatabase;
 
 public class Questions extends AppCompatActivity {
 
+    public int visibility = 0, c1 = 0, c2 = 0, c3 = 0, c4 = 0, c5 = 0, c6 = 0, c7 = 0, c8 = 0, c9 = 0, c10 = 0;
+    public int currentCategoryIndex, questionListIndex = 0, numberQuestions, currentScore = 0;
     int variable = 0;
     TextView ques;
     Button OptA, OptB, OptC, OptD;
     Button play_button;
     String get;
     ProgressBar progressBar;
-
     // obiecte din diferite clase
-    Books books;
-    Sports sports;
-    Currency currency;
-    Computer computer;
-    Capitals capitals;
-    English english;
-    General general;
-    Inventions inventions;
-    Maths maths;
-    Science science;
-
-    public int visibility = 0, c1 = 0, c2 = 0, c3 = 0, c4 = 0, c5 = 0, c6 = 0, c7 = 0, c8 = 0, c9 = 0, c10 = 0;
-    public int currentCategoryIndex, questionListIndex = 0, numberQuestions, currentScore = 0;
+    ArrayMap<String, CategoryDatabase> databases;
     String currentAnswer = null, currentQuestion, currentOptionA, currentOptionB, currentOptionC, currentOptionD;
     ArrayList<Integer> list = new ArrayList<>();
     Toast toast;
@@ -73,62 +54,28 @@ public class Questions extends AppCompatActivity {
         SharedPreferences shared = getSharedPreferences("Score", Context.MODE_PRIVATE);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // primirea intentului trimis de activitatea Navigation
         Intent intent = getIntent();
         get = intent.getStringExtra(Navigation.Message);
         toast = new Toast(this);
 
-        // legarea bazelor de date cu clasa Questions
+        databases = new ArrayMap<String, CategoryDatabase>();
+        databases.put("books", new CategoryDatabase(this, "books"));
+        databases.put("capitals", new CategoryDatabase(this, "capitals"));
+        databases.put("computer", new CategoryDatabase(this, "computer"));
+        databases.put("currency", new CategoryDatabase(this, "currency"));
+        databases.put("english", new CategoryDatabase(this, "english"));
+        databases.put("general", new CategoryDatabase(this, "general"));
+        databases.put("inventions", new CategoryDatabase(this, "inventions"));
+        databases.put("maths", new CategoryDatabase(this, "maths"));
+        databases.put("science", new CategoryDatabase(this, "science"));
+        databases.put("sports", new CategoryDatabase(this, "sports"));
 
-        books = new Books(this);
-        books.createDatabase();
-        books.openDatabase();
-        books.getWritableDatabase();
+        for (CategoryDatabase database : databases.values()) {
+            database.createDatabase();
+            database.openDatabase();
+            database.getWritableDatabase();
+        }
 
-        capitals = new Capitals(this);
-        capitals.createDatabase();
-        capitals.openDatabase();
-        capitals.getWritableDatabase();
-
-        computer = new Computer(this);
-        computer.createDatabase();
-        computer.openDatabase();
-        computer.getWritableDatabase();
-
-        currency = new Currency(this);
-        currency.createDatabase();
-        currency.openDatabase();
-        currency.getWritableDatabase();
-
-        english = new English(this);
-        english.createDatabase();
-        english.openDatabase();
-        english.getWritableDatabase();
-
-        general = new General(this);
-        general.createDatabase();
-        general.openDatabase();
-        general.getWritableDatabase();
-
-        inventions = new Inventions(this);
-        inventions.createDatabase();
-        inventions.openDatabase();
-        inventions.getWritableDatabase();
-
-        maths = new Maths(this);
-        maths.createDatabase();
-        maths.openDatabase();
-        maths.getWritableDatabase();
-
-        science = new Science(this);
-        science.createDatabase();
-        science.openDatabase();
-        science.getWritableDatabase();
-
-        sports = new Sports(this);
-        sports.createDatabase();
-        sports.openDatabase();
-        sports.getWritableDatabase();
 
         OptA = findViewById(R.id.OptionA);
         OptB = findViewById(R.id.OptionB);
@@ -256,12 +203,12 @@ public class Questions extends AppCompatActivity {
                     c1 = 1;
                 }
 
-                currentQuestion = computer.readQuestion(list.get(questionListIndex));
-                currentOptionA = computer.readOptionA(list.get(questionListIndex));
-                currentOptionB = computer.readOptionB(list.get(questionListIndex));
-                currentOptionC = computer.readOptionC(list.get(questionListIndex));
-                currentOptionD = computer.readOptionD(list.get(questionListIndex));
-                currentAnswer = computer.readAnswer(list.get(questionListIndex++));
+                currentQuestion = databases.get("computer").readQuestion(list.get(questionListIndex));
+                currentOptionA = databases.get("computer").readOptionA(list.get(questionListIndex));
+                currentOptionB = databases.get("computer").readOptionB(list.get(questionListIndex));
+                currentOptionC = databases.get("computer").readOptionC(list.get(questionListIndex));
+                currentOptionD = databases.get("computer").readOptionD(list.get(questionListIndex));
+                currentAnswer = databases.get("computer").readAnswer(list.get(questionListIndex++));
                 break;
             case "c2":
 
@@ -273,12 +220,12 @@ public class Questions extends AppCompatActivity {
                     c2 = 1;
                 }
 
-                currentQuestion = sports.readQuestion(list.get(questionListIndex));
-                currentOptionA = sports.readOptionA(list.get(questionListIndex));
-                currentOptionB = sports.readOptionB(list.get(questionListIndex));
-                currentOptionC = sports.readOptionC(list.get(questionListIndex));
-                currentOptionD = sports.readOptionD(list.get(questionListIndex));
-                currentAnswer = sports.readAnswer(list.get(questionListIndex++));
+                currentQuestion = databases.get("sports").readQuestion(list.get(questionListIndex));
+                currentOptionA = databases.get("sports").readOptionA(list.get(questionListIndex));
+                currentOptionB = databases.get("sports").readOptionB(list.get(questionListIndex));
+                currentOptionC = databases.get("sports").readOptionC(list.get(questionListIndex));
+                currentOptionD = databases.get("sports").readOptionD(list.get(questionListIndex));
+                currentAnswer = databases.get("sports").readAnswer(list.get(questionListIndex++));
                 break;
             case "c3":
 
@@ -290,12 +237,12 @@ public class Questions extends AppCompatActivity {
                     c3 = 1;
                 }
 
-                currentQuestion = inventions.readQuestion(list.get(questionListIndex));
-                currentOptionA = inventions.readOptionA(list.get(questionListIndex));
-                currentOptionB = inventions.readOptionB(list.get(questionListIndex));
-                currentOptionC = inventions.readOptionC(list.get(questionListIndex));
-                currentOptionD = inventions.readOptionD(list.get(questionListIndex));
-                currentAnswer = inventions.readAnswer(list.get(questionListIndex++));
+                currentQuestion = databases.get("inventions").readQuestion(list.get(questionListIndex));
+                currentOptionA = databases.get("inventions").readOptionA(list.get(questionListIndex));
+                currentOptionB = databases.get("inventions").readOptionB(list.get(questionListIndex));
+                currentOptionC = databases.get("inventions").readOptionC(list.get(questionListIndex));
+                currentOptionD = databases.get("inventions").readOptionD(list.get(questionListIndex));
+                currentAnswer = databases.get("inventions").readAnswer(list.get(questionListIndex++));
                 break;
             case "c4":
 
@@ -307,12 +254,12 @@ public class Questions extends AppCompatActivity {
                     c4 = 1;
                 }
 
-                currentQuestion = general.readQuestion(list.get(questionListIndex));
-                currentOptionA = general.readOptionA(list.get(questionListIndex));
-                currentOptionB = general.readOptionB(list.get(questionListIndex));
-                currentOptionC = general.readOptionC(list.get(questionListIndex));
-                currentOptionD = general.readOptionD(list.get(questionListIndex));
-                currentAnswer = general.readAnswer(list.get(questionListIndex++));
+                currentQuestion = databases.get("general").readQuestion(list.get(questionListIndex));
+                currentOptionA = databases.get("general").readOptionA(list.get(questionListIndex));
+                currentOptionB = databases.get("general").readOptionB(list.get(questionListIndex));
+                currentOptionC = databases.get("general").readOptionC(list.get(questionListIndex));
+                currentOptionD = databases.get("general").readOptionD(list.get(questionListIndex));
+                currentAnswer = databases.get("general").readAnswer(list.get(questionListIndex++));
                 break;
             case "c5":
 
@@ -324,12 +271,12 @@ public class Questions extends AppCompatActivity {
                     c5 = 1;
                 }
 
-                currentQuestion = science.readQuestion(list.get(questionListIndex));
-                currentOptionA = science.readOptionA(list.get(questionListIndex));
-                currentOptionB = science.readOptionB(list.get(questionListIndex));
-                currentOptionC = science.readOptionC(list.get(questionListIndex));
-                currentOptionD = science.readOptionD(list.get(questionListIndex));
-                currentAnswer = science.readAnswer(list.get(questionListIndex++));
+                currentQuestion = databases.get("science").readQuestion(list.get(questionListIndex));
+                currentOptionA = databases.get("science").readOptionA(list.get(questionListIndex));
+                currentOptionB = databases.get("science").readOptionB(list.get(questionListIndex));
+                currentOptionC = databases.get("science").readOptionC(list.get(questionListIndex));
+                currentOptionD = databases.get("science").readOptionD(list.get(questionListIndex));
+                currentAnswer = databases.get("science").readAnswer(list.get(questionListIndex++));
                 break;
             case "c6":
                 // romana
@@ -342,12 +289,12 @@ public class Questions extends AppCompatActivity {
                     c6 = 1;
                 }
 
-                currentQuestion = english.readQuestion(list.get(questionListIndex));
-                currentOptionA = english.readOptionA(list.get(questionListIndex));
-                currentOptionB = english.readOptionB(list.get(questionListIndex));
-                currentOptionC = english.readOptionC(list.get(questionListIndex));
-                currentOptionD = english.readOptionD(list.get(questionListIndex));
-                currentAnswer = english.readAnswer(list.get(questionListIndex++));
+                currentQuestion = databases.get("english").readQuestion(list.get(questionListIndex));
+                currentOptionA = databases.get("english").readOptionA(list.get(questionListIndex));
+                currentOptionB = databases.get("english").readOptionB(list.get(questionListIndex));
+                currentOptionC = databases.get("english").readOptionC(list.get(questionListIndex));
+                currentOptionD = databases.get("english").readOptionD(list.get(questionListIndex));
+                currentAnswer = databases.get("english").readAnswer(list.get(questionListIndex++));
                 break;
             case "c7":
 
@@ -359,12 +306,12 @@ public class Questions extends AppCompatActivity {
                     c7 = 1;
                 }
 
-                currentQuestion = books.readQuestion(list.get(questionListIndex));
-                currentOptionA = books.readOptionA(list.get(questionListIndex));
-                currentOptionB = books.readOptionB(list.get(questionListIndex));
-                currentOptionC = books.readOptionC(list.get(questionListIndex));
-                currentOptionD = books.readOptionD(list.get(questionListIndex));
-                currentAnswer = books.readAnswer(list.get(questionListIndex++));
+                currentQuestion = databases.get("books").readQuestion(list.get(questionListIndex));
+                currentOptionA = databases.get("books").readOptionA(list.get(questionListIndex));
+                currentOptionB = databases.get("books").readOptionB(list.get(questionListIndex));
+                currentOptionC = databases.get("books").readOptionC(list.get(questionListIndex));
+                currentOptionD = databases.get("books").readOptionD(list.get(questionListIndex));
+                currentAnswer = databases.get("books").readAnswer(list.get(questionListIndex++));
                 break;
             case "c8":
 
@@ -376,12 +323,12 @@ public class Questions extends AppCompatActivity {
                     c8 = 1;
                 }
 
-                currentQuestion = maths.readQuestion(list.get(questionListIndex));
-                currentOptionA = maths.readOptionA(list.get(questionListIndex));
-                currentOptionB = maths.readOptionB(list.get(questionListIndex));
-                currentOptionC = maths.readOptionC(list.get(questionListIndex));
-                currentOptionD = maths.readOptionD(list.get(questionListIndex));
-                currentAnswer = maths.readAnswer(list.get(questionListIndex++));
+                currentQuestion = databases.get("maths").readQuestion(list.get(questionListIndex));
+                currentOptionA = databases.get("maths").readOptionA(list.get(questionListIndex));
+                currentOptionB = databases.get("maths").readOptionB(list.get(questionListIndex));
+                currentOptionC = databases.get("maths").readOptionC(list.get(questionListIndex));
+                currentOptionD = databases.get("maths").readOptionD(list.get(questionListIndex));
+                currentAnswer = databases.get("maths").readAnswer(list.get(questionListIndex++));
                 break;
             case "c9":
 
@@ -393,12 +340,12 @@ public class Questions extends AppCompatActivity {
                     c9 = 1;
                 }
 
-                currentQuestion = capitals.readQuestion(list.get(questionListIndex));
-                currentOptionA = capitals.readOptionA(list.get(questionListIndex));
-                currentOptionB = capitals.readOptionB(list.get(questionListIndex));
-                currentOptionC = capitals.readOptionC(list.get(questionListIndex));
-                currentOptionD = capitals.readOptionD(list.get(questionListIndex));
-                currentAnswer = capitals.readAnswer(list.get(questionListIndex++));
+                currentQuestion = databases.get("capitals").readQuestion(list.get(questionListIndex));
+                currentOptionA = databases.get("capitals").readOptionA(list.get(questionListIndex));
+                currentOptionB = databases.get("capitals").readOptionB(list.get(questionListIndex));
+                currentOptionC = databases.get("capitals").readOptionC(list.get(questionListIndex));
+                currentOptionD = databases.get("capitals").readOptionD(list.get(questionListIndex));
+                currentAnswer = databases.get("capitals").readAnswer(list.get(questionListIndex++));
                 break;
             case "c10":
 
@@ -410,16 +357,16 @@ public class Questions extends AppCompatActivity {
                     c10 = 1;
                 }
 
-                currentQuestion = currency.readQuestion(list.get(questionListIndex));
-                currentOptionA = currency.readOptionA(list.get(questionListIndex));
-                currentOptionB = currency.readOptionB(list.get(questionListIndex));
-                currentOptionC = currency.readOptionC(list.get(questionListIndex));
-                currentOptionD = currency.readOptionD(list.get(questionListIndex));
-                currentAnswer = currency.readAnswer(list.get(questionListIndex++));
+                currentQuestion = databases.get("currency").readQuestion(list.get(questionListIndex));
+                currentOptionA = databases.get("currency").readOptionA(list.get(questionListIndex));
+                currentOptionB = databases.get("currency").readOptionB(list.get(questionListIndex));
+                currentOptionC = databases.get("currency").readOptionC(list.get(questionListIndex));
+                currentOptionD = databases.get("currency").readOptionD(list.get(questionListIndex));
+                currentAnswer = databases.get("currency").readAnswer(list.get(questionListIndex++));
                 break;
         }
 
-        ques.setText("" + currentQuestion);
+        ques.setText(currentQuestion);
         OptA.setText(currentOptionA);
         OptB.setText(currentOptionB);
         OptC.setText(currentOptionC);
