@@ -137,7 +137,7 @@ public class Questions extends AppCompatActivity {
 
                     progressBar.setProgress(0);
 
-                    if (categoryFinished == true) {
+                    if (categoryFinished) {
                         Intent intent = new Intent(Questions.this, Result.class);
                         intent.putExtra("correct", currentScore);
                         intent.putExtra("attemp", numberQuestions);
