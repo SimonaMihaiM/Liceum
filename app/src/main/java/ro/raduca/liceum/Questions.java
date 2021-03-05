@@ -24,9 +24,9 @@ import ro.raduca.liceum.data.CategoryDatabase;
 
 public class Questions extends AppCompatActivity {
 
-    public int visibility = 0, c1 = 0, c2 = 0, c3 = 0, c4 = 0, c5 = 0, c6 = 0, c7 = 0, c8 = 0, c9 = 0, c10 = 0;
+    public int visibility = 0;
     public int currentCategoryIndex, questionListIndex = 0, numberQuestions, currentScore = 0;
-    int variable = 0;
+    boolean categoryFinished = true;
     int maxQuestions = 10;
     TextView ques;
     Button OptA, OptB, OptC, OptD;
@@ -75,7 +75,6 @@ public class Questions extends AppCompatActivity {
             database.openDatabase();
             database.getWritableDatabase();
         }
-
 
         OptA = findViewById(R.id.OptionA);
         OptB = findViewById(R.id.OptionB);
@@ -138,7 +137,7 @@ public class Questions extends AppCompatActivity {
 
                     progressBar.setProgress(0);
 
-                    if (variable == 0) {
+                    if (categoryFinished == true) {
                         Intent intent = new Intent(Questions.this, Result.class);
                         intent.putExtra("correct", currentScore);
                         intent.putExtra("attemp", numberQuestions);
@@ -229,13 +228,10 @@ public class Questions extends AppCompatActivity {
     }
 
     private void setUIQuestionElements(String databaseName) {
-        if (c10 == 0) {
-            for (currentCategoryIndex = 1; currentCategoryIndex < this.maxQuestions; currentCategoryIndex++) {
-                list.add(currentCategoryIndex);
-            }
-            Collections.shuffle(list);
-            c10 = 1;
+        for (currentCategoryIndex = 1; currentCategoryIndex < this.maxQuestions; currentCategoryIndex++) {
+            list.add(currentCategoryIndex);
         }
+        Collections.shuffle(list);
 
         currentQuestion = databases.get(databaseName).readQuestion(list.get(questionListIndex));
         currentOptionA = databases.get(databaseName).readOptionA(list.get(questionListIndex));
@@ -254,21 +250,21 @@ public class Questions extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        variable = 1;
+        categoryFinished = false;
         SharedPreferences sp = getSharedPreferences("Score", Context.MODE_PRIVATE);
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        variable = 1;
+        categoryFinished = false;
         SharedPreferences sp = getSharedPreferences("Score", Context.MODE_PRIVATE);
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        variable = 1;
+        categoryFinished = false;
         finish();
     }
 }
