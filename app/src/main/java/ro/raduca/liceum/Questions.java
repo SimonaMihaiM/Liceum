@@ -25,7 +25,7 @@ import ro.raduca.liceum.data.CategoryDatabase;
 public class Questions extends AppCompatActivity {
 
     public int visibility = 0;
-    public int currentCategoryIndex, questionListIndex = 0, questionIndex, currentScore = 0;
+    public int currentCategoryIndex, questionListIndex = 0, questionIndex=0, currentScore = 0;
     boolean categoryFinished = true;
     int maxQuestions = 10;
     TextView ques;
@@ -107,32 +107,6 @@ public class Questions extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                final SharedPreferences shared = getSharedPreferences("Score", Context.MODE_PRIVATE);
-                toast.cancel();
-                SharedPreferences.Editor editor = shared.edit();
-                editor.putInt("Questions", questionIndex).apply();
-
-                if (get.equals("c1") && shared.getInt("Computer", 0) < currentScore)
-                    editor.putInt("Computer", currentScore * 10).apply();
-                else if (get.equals("c2") && shared.getInt("Sports", 0) < 1)
-                    editor.putInt("Sports", currentScore * 10).apply();
-                else if (get.equals("c3") && shared.getInt("Inventions", 0) < 1)
-                    editor.putInt("Inventions", currentScore * 10).apply();
-                else if (get.equals("c4") && shared.getInt("General", 0) < 1)
-                    editor.putInt("General", currentScore * 10).apply();
-                else if (get.equals("c5") && shared.getInt("Science", 0) < 1)
-                    editor.putInt("Science", currentScore * 10).apply();
-                else if (get.equals("c6") && shared.getInt("English", 0) < 1)
-                    editor.putInt("English", currentScore * 10).apply();
-                else if (get.equals("c7") && shared.getInt("Books", 0) < 1)
-                    editor.putInt("Books", currentScore * 10).apply();
-                else if (get.equals("c8") && shared.getInt("Maths", 0) < 1)
-                    editor.putInt("Maths", currentScore * 10).apply();
-                else if (get.equals("c9") && shared.getInt("Capitals", 0) < 1)
-                    editor.putInt("Capitals", currentScore * 10).apply();
-                else if (get.equals("c10") && shared.getInt("Currency", 0) < 1)
-                    editor.putInt("Currency", currentScore * 10).apply();
-
                 progressBar.setProgress(0);
 
                 displayNextQuestion();
@@ -141,8 +115,37 @@ public class Questions extends AppCompatActivity {
         timer.start();
     }
 
+    public void writeScore(){
+        final SharedPreferences shared = getSharedPreferences("Score", Context.MODE_PRIVATE);
+        toast.cancel();
+        SharedPreferences.Editor editor = shared.edit();
+        editor.putInt("Questions", questionIndex).apply();
+
+        if (get.equals("c1") && shared.getInt("Computer", 0) < currentScore)
+            editor.putInt("Computer", currentScore * 10).apply();
+        else if (get.equals("c2") && shared.getInt("Sports", 0) < 1)
+            editor.putInt("Sports", currentScore * 10).apply();
+        else if (get.equals("c3") && shared.getInt("Inventions", 0) < 1)
+            editor.putInt("Inventions", currentScore * 10).apply();
+        else if (get.equals("c4") && shared.getInt("General", 0) < 1)
+            editor.putInt("General", currentScore * 10).apply();
+        else if (get.equals("c5") && shared.getInt("Science", 0) < 1)
+            editor.putInt("Science", currentScore * 10).apply();
+        else if (get.equals("c6") && shared.getInt("English", 0) < 1)
+            editor.putInt("English", currentScore * 10).apply();
+        else if (get.equals("c7") && shared.getInt("Books", 0) < 1)
+            editor.putInt("Books", currentScore * 10).apply();
+        else if (get.equals("c8") && shared.getInt("Maths", 0) < 1)
+            editor.putInt("Maths", currentScore * 10).apply();
+        else if (get.equals("c9") && shared.getInt("Capitals", 0) < 1)
+            editor.putInt("Capitals", currentScore * 10).apply();
+        else if (get.equals("c10") && shared.getInt("Currency", 0) < 1)
+            editor.putInt("Currency", currentScore * 10).apply();
+    }
+
     public void displayResults() {
         timer.cancel();
+        writeScore();
         Intent intent = new Intent(Questions.this, Result.class);
         intent.putExtra("correct", currentScore);
         intent.putExtra("attemp", questionIndex);
@@ -151,42 +154,43 @@ public class Questions extends AppCompatActivity {
     }
 
     public void displayNextQuestion() {
-        if (questionIndex == maxQuestions) {
+        if (questionListIndex == maxQuestions) {
             displayResults();
-        }
+        } else {
 
-        questionIndex++;
-        switch (get) {
-            case "c1":
-                setUIQuestionElements("computer");
-                break;
-            case "c2":
-                setUIQuestionElements("sports");
-                break;
-            case "c3":
-                setUIQuestionElements("inventions");
-                break;
-            case "c4":
-                setUIQuestionElements("general");
-                break;
-            case "c5":
-                setUIQuestionElements("science");
-                break;
-            case "c6":
-                setUIQuestionElements("english");
-                break;
-            case "c7":
-                setUIQuestionElements("books");
-                break;
-            case "c8":
-                setUIQuestionElements("maths");
-                break;
-            case "c9":
-                setUIQuestionElements("capitals");
-                break;
-            case "c10":
-                setUIQuestionElements("currency");
-                break;
+            questionIndex++;
+            switch (get) {
+                case "c1":
+                    setUIQuestionElements("computer");
+                    break;
+                case "c2":
+                    setUIQuestionElements("sports");
+                    break;
+                case "c3":
+                    setUIQuestionElements("inventions");
+                    break;
+                case "c4":
+                    setUIQuestionElements("general");
+                    break;
+                case "c5":
+                    setUIQuestionElements("science");
+                    break;
+                case "c6":
+                    setUIQuestionElements("english");
+                    break;
+                case "c7":
+                    setUIQuestionElements("books");
+                    break;
+                case "c8":
+                    setUIQuestionElements("maths");
+                    break;
+                case "c9":
+                    setUIQuestionElements("capitals");
+                    break;
+                case "c10":
+                    setUIQuestionElements("currency");
+                    break;
+            }
         }
     }
 
