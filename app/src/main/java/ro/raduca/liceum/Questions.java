@@ -135,18 +135,22 @@ public class Questions extends AppCompatActivity {
 
                 progressBar.setProgress(0);
 
-                if (questionIndex == maxQuestions-1) {
-                    Intent intent = new Intent(Questions.this, Result.class);
-                    intent.putExtra("correct", currentScore);
-                    intent.putExtra("attemp", questionIndex);
-                    startActivity(intent);
-                    finish();
+                if (questionIndex == maxQuestions) {
+                    displayResults();
                 } else {
                     displayNextQuestion();
                 }
             }
         };
         timer.start();
+    }
+
+    public void displayResults() {
+        Intent intent = new Intent(Questions.this, Result.class);
+        intent.putExtra("correct", currentScore);
+        intent.putExtra("attemp", questionIndex);
+        startActivity(intent);
+        finish();
     }
 
     public void displayNextQuestion() {
