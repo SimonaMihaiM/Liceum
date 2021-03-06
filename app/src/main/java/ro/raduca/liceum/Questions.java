@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v4.app.INotificationSideChannel;
 import android.util.ArrayMap;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 import ro.raduca.liceum.data.CategoryDatabase;
@@ -37,17 +39,18 @@ public class Questions extends AppCompatActivity {
     String currentAnswer = null, currentQuestion, currentOptionA, currentOptionB, currentOptionC, currentOptionD;
     ArrayList<Integer> list = new ArrayList<>();
     Toast toast;
-    long timerDuration = 3000;
+    long timerDuration = 10000;
     long timerStep = 1000;
     CountDownTimer timer;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        for (currentCategoryIndex = 1; currentCategoryIndex <= this.maxQuestions; currentCategoryIndex++) {
+        for (currentCategoryIndex = 1; currentCategoryIndex <= maxQuestions; currentCategoryIndex++) {
             list.add(currentCategoryIndex);
         }
         Collections.shuffle(list);
+//        list = new ArrayList<>(list.subList(0, 3));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
