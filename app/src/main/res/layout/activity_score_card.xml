@@ -225,7 +225,7 @@
                     android:layout_height="50dp"
                     android:layout_weight="1"
                     android:paddingTop="15dp"
-                    android:text="@string/authors"
+                    android:text="@string/books"
                     android:textAlignment="center"
                     android:textColor="#000"
                     android:textSize="18sp" />
