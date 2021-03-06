@@ -189,7 +189,7 @@
                 android:paddingTop="25dp"
                 android:text="@string/capitals"
                 android:textAllCaps="false"
-                android:textColor="@color/colorTextLight"
+                android:textColor="@color/colorTextDark"
                 android:textSize="18sp" />
 
             <Button
