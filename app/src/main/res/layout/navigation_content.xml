@@ -208,6 +208,31 @@
                 android:textSize="18sp" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/b11"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@color/colorC11Background"
+                android:drawableStart="@drawable/anteprenoriat"
+                android:drawableEnd="@drawable/gift"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingStart="35dp"
+                android:text="@string/anteprenoriat"
+                android:textAllCaps="false"
+                android:textColor="@color/colorTextLight"
+                android:textSize="18sp"
+                tools:ignore="RtlSymmetry" />
+
+        </LinearLayout>
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="50dp" />

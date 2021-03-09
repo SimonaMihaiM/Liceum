@@ -27,4 +27,6 @@
     <string name="parola">Parolă</string>
     <string name="bineativenit">Bine ați venit!</string>
     <string name="parolauitata">Ați uitat parola?</string>
+    <string name="anteprenoriat">ANT</string>
+    <string name="reseted_score">Scorul a fost resetat</string>
 </resources>

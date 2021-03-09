@@ -40,8 +40,9 @@ public class Settings extends AppCompatActivity {
                 editor.putInt("Maths", 0);
                 editor.putInt("Capitals", 0);
                 editor.putInt("Currency", 0);
+                editor.putInt("ANT", 0);
                 editor.apply();
-                Snackbar.make(v, "The highscore was reseted successfully!", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(v, R.string.reseted_score, Snackbar.LENGTH_LONG).show();
             }
         });
     }

@@ -13,7 +13,7 @@ import ro.raduca.liceum.R;
 
 public class ScoreCard extends AppCompatActivity {
 
-    TextView a1, a2, a3, a4, a5, a6, a7, a8, a9, a10;
+    TextView a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class ScoreCard extends AppCompatActivity {
         a8 = findViewById(R.id.maths);
         a9 = findViewById(R.id.capitals);
         a10 = findViewById(R.id.currency);
+        a11 = findViewById(R.id.anteprenoriat);
 
         try {
             a1.setText(" " + sharedPreferences.getInt("Computer", 0));
@@ -47,6 +48,7 @@ public class ScoreCard extends AppCompatActivity {
             a8.setText(" " + sharedPreferences.getInt("Maths", 0));
             a9.setText(" " + sharedPreferences.getInt("Capitals", 0));
             a10.setText(" " + sharedPreferences.getInt("Currency", 0));
+            a11.setText(" " + sharedPreferences.getInt("ANT", 0));
         } catch (Exception e) {
             Toast.makeText(ScoreCard.this, "" + e, Toast.LENGTH_SHORT).show();
         }

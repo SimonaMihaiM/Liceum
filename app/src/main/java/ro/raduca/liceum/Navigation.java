@@ -22,7 +22,7 @@ import ro.raduca.liceum.R;
 public class Navigation extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     TextView nav_name_header, nav_email_header;
-    Button c1, c2, c3, c4, c5, c6, c7, c8, c9, c10;
+    Button c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11;
     private ProgressDialog progressBar;
     public final static String Message = "ro.raduca.MESSAGE";
 
@@ -67,6 +67,7 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
         c8 = findViewById(R.id.b8);
         c9 = findViewById(R.id.b9);
         c10 = findViewById(R.id.b10);
+        c11 = findViewById(R.id.b11);
 
         c1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -348,6 +349,33 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
                         progressBar.cancel();
                         Intent intent = new Intent(Navigation.this, Questions.class);
                         intent.putExtra(Message, "c10");
+                        startActivity(intent);
+                    }
+                }, 2000);
+            }
+        });
+
+        c11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {}}, 400);
+                progressBar = new ProgressDialog(v.getContext());
+                progressBar.setCancelable(false);
+                progressBar.setMessage("Getting questions ready...");
+                progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                progressBar.setProgress(0);
+                progressBar.setMax(100);
+                progressBar.show();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressBar.cancel();
+                        Intent intent = new Intent(Navigation.this, Questions.class);
+                        intent.putExtra(Message, "c11");
                         startActivity(intent);
                     }
                 }, 2000);

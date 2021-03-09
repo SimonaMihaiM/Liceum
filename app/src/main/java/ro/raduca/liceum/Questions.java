@@ -80,6 +80,7 @@ public class Questions extends AppCompatActivity {
         databases.put("maths", new CategoryDatabase(this, "maths"));
         databases.put("science", new CategoryDatabase(this, "science"));
         databases.put("sports", new CategoryDatabase(this, "sports"));
+        databases.put("anteprenoriat", new CategoryDatabase(this, "anteprenoriat"));
 
         for (CategoryDatabase database : databases.values()) {
             database.createDatabase();
@@ -144,6 +145,8 @@ public class Questions extends AppCompatActivity {
             editor.putInt("Capitals", currentScore * 10).apply();
         else if (get.equals("c10") && shared.getInt("Currency", 0) < 1)
             editor.putInt("Currency", currentScore * 10).apply();
+        else if (get.equals("c11") && shared.getInt("ANT", 0) < 1)
+            editor.putInt("ANT", currentScore * 10).apply();
     }
 
     public void displayResults() {
@@ -192,6 +195,9 @@ public class Questions extends AppCompatActivity {
                     break;
                 case "c10":
                     setUIQuestionElements("currency");
+                    break;
+                case "c11":
+                    setUIQuestionElements("anteprenoriat");
                     break;
             }
         }
