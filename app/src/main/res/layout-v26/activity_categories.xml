@@ -68,14 +68,14 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:autoText="false"
                 android:foreground="?attr/selectableItemBackground"
                 android:onClick="onClick"
                 android:padding="10dp"
                 android:textAlignment="center"
                 android:textAllCaps="false"
-                android:textColor="#ffffff"
+                android:textColor="@color/colorTextLight"
                 android:textSize="20sp"
+                android:autoSizeTextType="uniform"
                 android:visibility="invisible" />
 
             <Button
@@ -89,7 +89,8 @@
                 android:textAlignment="center"
                 android:visibility="invisible"
                 android:textAllCaps="false"
-                android:textColor="#ffffff"
+                android:textColor="@color/colorTextLight"
+                android:autoSizeTextType="uniform"
                 android:textSize="20sp"/>
 
         </LinearLayout>
@@ -110,7 +111,8 @@
                 android:textAlignment="center"
                 android:visibility="invisible"
                 android:textAllCaps="false"
-                android:textColor="#ffffff"
+                android:textColor="@color/colorTextLight"
+                android:autoSizeTextType="uniform"
                 android:textSize="20sp"/>
 
             <Button
@@ -123,8 +125,9 @@
                 android:padding="10dp"
                 android:textAlignment="center"
                 android:textAllCaps="false"
-                android:textColor="#ffffff"
+                android:textColor="@color/colorTextLight"
                 android:textSize="20sp"
+                android:autoSizeTextType="uniform"
                 android:visibility="invisible" />
 
         </LinearLayout>
