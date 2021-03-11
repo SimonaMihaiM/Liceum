@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.v4.app.INotificationSideChannel;
 import android.util.ArrayMap;
 import android.view.View;
 import android.widget.Button;
@@ -19,10 +18,11 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
-import ro.raduca.liceum.data.CategoryDatabase;
+import ro.raduca.liceum.data.Category;
+import ro.raduca.liceum.data.Database;
+import ro.raduca.liceum.data.Question;
 
 public class Questions extends AppCompatActivity {
 
@@ -35,8 +35,9 @@ public class Questions extends AppCompatActivity {
     Button play_button;
     String get;
     ProgressBar progressBar;
-    ArrayMap<String, CategoryDatabase> databases;
-    String currentAnswer = null, currentQuestion, currentOptionA, currentOptionB, currentOptionC, currentOptionD;
+    ArrayList<Category> categories;
+    Question currentQuestion;
+    String currentAnswer = null, currentOptionA, currentOptionB, currentOptionC, currentOptionD;
     ArrayList<Integer> list = new ArrayList<>();
     Toast toast;
     long timerDuration = 10000;
@@ -62,31 +63,19 @@ public class Questions extends AppCompatActivity {
         progressBar.setMax(100);
         progressBar.setKeepScreenOn(true);
 
-        SharedPreferences shared = getSharedPreferences("Score", Context.MODE_PRIVATE);
+//        SharedPreferences shared = getSharedPreferences("Score", Context.MODE_PRIVATE);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
         get = intent.getStringExtra(Navigation.Message);
         toast = new Toast(this);
 
-        databases = new ArrayMap<String, CategoryDatabase>();
-        databases.put("books", new CategoryDatabase(this, "books"));
-        databases.put("capitals", new CategoryDatabase(this, "capitals"));
-        databases.put("computer", new CategoryDatabase(this, "computer"));
-        databases.put("currency", new CategoryDatabase(this, "currency"));
-        databases.put("english", new CategoryDatabase(this, "english"));
-        databases.put("general", new CategoryDatabase(this, "general"));
-        databases.put("inventions", new CategoryDatabase(this, "inventions"));
-        databases.put("maths", new CategoryDatabase(this, "maths"));
-        databases.put("science", new CategoryDatabase(this, "science"));
-        databases.put("sports", new CategoryDatabase(this, "sports"));
-        databases.put("anteprenoriat", new CategoryDatabase(this, "anteprenoriat"));
+        Database database = new Database(this);
+        database.createDatabase();
+        database.openDatabase();
+        database.getWritableDatabase();
 
-        for (CategoryDatabase database : databases.values()) {
-            database.createDatabase();
-            database.openDatabase();
-            database.getWritableDatabase();
-        }
+        categories = Category.getAll(database.sqlite);
 
         OptA = findViewById(R.id.OptionA);
         OptB = findViewById(R.id.OptionB);
@@ -167,37 +156,37 @@ public class Questions extends AppCompatActivity {
             questionIndex++;
             switch (get) {
                 case "c1":
-                    setUIQuestionElements("computer");
+                    setUIQuestionElements(categories.get(0));
                     break;
                 case "c2":
-                    setUIQuestionElements("sports");
+                    setUIQuestionElements(categories.get(1));
                     break;
                 case "c3":
-                    setUIQuestionElements("inventions");
+                    setUIQuestionElements(categories.get(2));
                     break;
                 case "c4":
-                    setUIQuestionElements("general");
+                    setUIQuestionElements(categories.get(3));
                     break;
                 case "c5":
-                    setUIQuestionElements("science");
+                    setUIQuestionElements(categories.get(4));
                     break;
                 case "c6":
-                    setUIQuestionElements("english");
+                    setUIQuestionElements(categories.get(5));
                     break;
                 case "c7":
-                    setUIQuestionElements("books");
+                    setUIQuestionElements(categories.get(6));
                     break;
                 case "c8":
-                    setUIQuestionElements("maths");
+                    setUIQuestionElements(categories.get(7));
                     break;
                 case "c9":
-                    setUIQuestionElements("capitals");
+                    setUIQuestionElements(categories.get(8));
                     break;
                 case "c10":
-                    setUIQuestionElements("currency");
+                    setUIQuestionElements(categories.get(9));
                     break;
                 case "c11":
-                    setUIQuestionElements("anteprenoriat");
+                    setUIQuestionElements(categories.get(10));
                     break;
             }
         }
@@ -261,21 +250,21 @@ public class Questions extends AppCompatActivity {
         displayNextQuestion();
     }
 
-    private void setUIQuestionElements(String databaseName) {
+    private void setUIQuestionElements(Category category) {
         addTimer();
 
-        currentQuestion = databases.get(databaseName).readQuestion(list.get(questionListIndex));
-        currentOptionA = databases.get(databaseName).readOptionA(list.get(questionListIndex));
-        currentOptionB = databases.get(databaseName).readOptionB(list.get(questionListIndex));
-        currentOptionC = databases.get(databaseName).readOptionC(list.get(questionListIndex));
-        currentOptionD = databases.get(databaseName).readOptionD(list.get(questionListIndex));
-        currentAnswer = databases.get(databaseName).readAnswer(list.get(questionListIndex++));
+        currentAnswer = category.getQuestion(list.get(questionListIndex)).getAnswer();
+        currentOptionA = category.getQuestion(list.get(questionListIndex)).getOption("A");
+        currentOptionB = category.getQuestion(list.get(questionListIndex)).getOption("B");
+        currentOptionC = category.getQuestion(list.get(questionListIndex)).getOption("C");
+        currentOptionD = category.getQuestion(list.get(questionListIndex)).getOption("D");
+        currentQuestion = category.getQuestion(list.get(questionListIndex++));
 
-        ques.setText(currentQuestion);
-        OptA.setText(currentOptionA);
-        OptB.setText(currentOptionB);
-        OptC.setText(currentOptionC);
-        OptD.setText(currentOptionD);
+        ques.setText(currentQuestion.getQuestion());
+        OptA.setText(currentQuestion.getOption("A"));
+        OptB.setText(currentQuestion.getOption("B"));
+        OptC.setText(currentQuestion.getOption("C"));
+        OptD.setText(currentQuestion.getOption("D"));
     }
 
     @Override
