@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.ArrayMap;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -19,6 +18,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 import ro.raduca.liceum.data.Category;
 import ro.raduca.liceum.data.Database;
@@ -33,7 +33,7 @@ public class Questions extends AppCompatActivity {
     TextView ques;
     Button OptA, OptB, OptC, OptD;
     Button play_button;
-    String get;
+    String selectedCategoru;
     ProgressBar progressBar;
     ArrayList<Category> categories;
     Question currentQuestion;
@@ -63,11 +63,12 @@ public class Questions extends AppCompatActivity {
         progressBar.setMax(100);
         progressBar.setKeepScreenOn(true);
 
+
 //        SharedPreferences shared = getSharedPreferences("Score", Context.MODE_PRIVATE);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
-        get = intent.getStringExtra(Navigation.Message);
+        selectedCategoru = intent.getStringExtra(Navigation.Message);
         toast = new Toast(this);
 
         Database database = new Database(this);
@@ -114,27 +115,27 @@ public class Questions extends AppCompatActivity {
         SharedPreferences.Editor editor = shared.edit();
         editor.putInt("Questions", questionIndex).apply();
 
-        if (get.equals("c1") && shared.getInt("Computer", 0) < currentScore)
+        if (selectedCategoru.equals("c1") && shared.getInt("Computer", 0) < currentScore)
             editor.putInt("Computer", currentScore * 10).apply();
-        else if (get.equals("c2") && shared.getInt("Sports", 0) < 1)
+        else if (selectedCategoru.equals("c2") && shared.getInt("Sports", 0) < 1)
             editor.putInt("Sports", currentScore * 10).apply();
-        else if (get.equals("c3") && shared.getInt("Inventions", 0) < 1)
+        else if (selectedCategoru.equals("c3") && shared.getInt("Inventions", 0) < 1)
             editor.putInt("Inventions", currentScore * 10).apply();
-        else if (get.equals("c4") && shared.getInt("General", 0) < 1)
+        else if (selectedCategoru.equals("c4") && shared.getInt("General", 0) < 1)
             editor.putInt("General", currentScore * 10).apply();
-        else if (get.equals("c5") && shared.getInt("Science", 0) < 1)
+        else if (selectedCategoru.equals("c5") && shared.getInt("Science", 0) < 1)
             editor.putInt("Science", currentScore * 10).apply();
-        else if (get.equals("c6") && shared.getInt("English", 0) < 1)
+        else if (selectedCategoru.equals("c6") && shared.getInt("English", 0) < 1)
             editor.putInt("English", currentScore * 10).apply();
-        else if (get.equals("c7") && shared.getInt("Books", 0) < 1)
+        else if (selectedCategoru.equals("c7") && shared.getInt("Books", 0) < 1)
             editor.putInt("Books", currentScore * 10).apply();
-        else if (get.equals("c8") && shared.getInt("Maths", 0) < 1)
+        else if (selectedCategoru.equals("c8") && shared.getInt("Maths", 0) < 1)
             editor.putInt("Maths", currentScore * 10).apply();
-        else if (get.equals("c9") && shared.getInt("Capitals", 0) < 1)
+        else if (selectedCategoru.equals("c9") && shared.getInt("Capitals", 0) < 1)
             editor.putInt("Capitals", currentScore * 10).apply();
-        else if (get.equals("c10") && shared.getInt("Currency", 0) < 1)
+        else if (selectedCategoru.equals("c10") && shared.getInt("Currency", 0) < 1)
             editor.putInt("Currency", currentScore * 10).apply();
-        else if (get.equals("c11") && shared.getInt("ANT", 0) < 1)
+        else if (selectedCategoru.equals("c11") && shared.getInt("ANT", 0) < 1)
             editor.putInt("ANT", currentScore * 10).apply();
     }
 
@@ -154,7 +155,7 @@ public class Questions extends AppCompatActivity {
         } else {
 
             questionIndex++;
-            switch (get) {
+            switch (selectedCategoru) {
                 case "c1":
                     setUIQuestionElements(categories.get(0));
                     break;
