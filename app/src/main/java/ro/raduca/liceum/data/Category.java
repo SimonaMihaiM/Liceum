@@ -39,6 +39,10 @@ public class Category {
        return categories;
     }
 
+    public String getTranslatedName() {
+        return this.translatedName;
+    }
+
     public Question getQuestion(int index) {
         return this.questions.get(index);
     }
