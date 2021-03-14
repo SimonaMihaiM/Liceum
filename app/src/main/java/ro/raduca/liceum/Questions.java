@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -61,7 +62,9 @@ public class Questions extends AppCompatActivity {
 
         progressBar = findViewById(R.id.progressBar);
         progressBar.setMax(100);
+        progressBar.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.progressOkay), android.graphics.PorterDuff.Mode.SRC_IN);
         progressBar.setKeepScreenOn(true);
+        progressBar.setScaleY(3f);
 
 
 //        SharedPreferences shared = getSharedPreferences("Score", Context.MODE_PRIVATE);
@@ -96,6 +99,16 @@ public class Questions extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 progressBarValue = (int) (progressBarValue - 100*timerStep/timerDuration);
+                int progressBarColor = ContextCompat.getColor(getContext(), R.color.progressOkay);
+                if (progressBarValue <= 66) {
+                    progressBarColor = ContextCompat.getColor(getContext(), R.color.progressWarning);
+                }
+                if (progressBarValue <= 33) {
+                    progressBarColor = ContextCompat.getColor(getContext(), R.color.progressDanger);
+                }
+
+                progressBar.getProgressDrawable().setColorFilter(progressBarColor, android.graphics.PorterDuff.Mode.SRC_IN);
+
                 progressBar.setProgress(progressBarValue);
             }
 
@@ -107,6 +120,10 @@ public class Questions extends AppCompatActivity {
             }
         };
         timer.start();
+    }
+
+    public Context getContext() {
+        return this;
     }
 
     public void writeScore(){
