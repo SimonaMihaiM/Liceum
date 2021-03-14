@@ -1,10 +1,13 @@
 package ro.raduca.liceum;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -167,6 +170,11 @@ public class Questions extends AppCompatActivity {
     }
 
     public void displayNextQuestion() {
+        OptA.setBackgroundColor(ContextCompat.getColor(this, R.color.buttonBackgroundBase));
+        OptB.setBackgroundColor(ContextCompat.getColor(this, R.color.buttonBackgroundBase));
+        OptC.setBackgroundColor(ContextCompat.getColor(this, R.color.buttonBackgroundBase));
+        OptD.setBackgroundColor(ContextCompat.getColor(this, R.color.buttonBackgroundBase));
+
         if (questionListIndex == maxQuestions) {
             displayResults();
         } else {
@@ -223,50 +231,74 @@ public class Questions extends AppCompatActivity {
         }
 
         if (currentAnswer != null) {
+
             switch (currentAnswer) {
                 case "A":
                     if (v.getId() == R.id.OptionA) {
-                        Snackbar.make(v, "         Correct ☺", Snackbar.LENGTH_SHORT).show();
+                        OptA.setBackgroundColor(ContextCompat.getColor(this, R.color.progressOkay));
+//                        Snackbar.make(v, "         Correct ☺", Snackbar.LENGTH_SHORT).show();
                         currentScore++;
                     } else {
-                        Snackbar.make(v, "Incorrect\t      Answer : " + currentOptionA + "", Snackbar.LENGTH_SHORT).show();
+                        OptA.setBackgroundColor(ContextCompat.getColor(this, R.color.progressOkay));
+                        v.setBackgroundColor(ContextCompat.getColor(this, R.color.progressDanger));
+//                        Snackbar.make(v, "Incorrect\t      Answer : " + currentOptionA + "", Snackbar.LENGTH_SHORT).show();
                     }
                     break;
                 case "B":
                     if (v.getId() == R.id.OptionB) {
+                        OptB.setBackgroundColor(ContextCompat.getColor(this, R.color.progressOkay));
                         //Here we use the snackbar because if we use the toast then they will be stacked an user cannot idetify which questions answer is it showing
-                        Snackbar.make(v, "         Correct ☺", Snackbar.LENGTH_SHORT).show();
+//                        Snackbar.make(v, "         Correct ☺", Snackbar.LENGTH_SHORT).show();
 
                         currentScore++;
                     } else {
-                        Snackbar.make(v, "Incorrect\t      Answer : " + currentOptionB + "", Snackbar.LENGTH_SHORT).show();
+                        v.setBackgroundColor(ContextCompat.getColor(this, R.color.progressDanger));
+                        OptB.setBackgroundColor(ContextCompat.getColor(this, R.color.progressOkay));
+//                        Snackbar.make(v, "Incorrect\t      Answer : " + currentOptionB + "", Snackbar.LENGTH_SHORT).show();
                     }
                     break;
                 case "C":
                     if (v.getId() == R.id.OptionC) {
+                        OptC.setBackgroundColor(ContextCompat.getColor(this, R.color.progressOkay));
                         //Here we use the snackbar because if we use the toast then they will be stacked an user cannot idetify which questions answer is it showing
-                        Snackbar.make(v, "         Correct ☺", Snackbar.LENGTH_SHORT).show();
+//                        Snackbar.make(v, "         Correct ☺", Snackbar.LENGTH_SHORT).show();
 
                         currentScore++;
                     } else {
-                        Snackbar.make(v, "Incorrect\t      Answer : " + currentOptionC + "", Snackbar.LENGTH_SHORT).show();
+                        OptC.setBackgroundColor(ContextCompat.getColor(this, R.color.progressOkay));
+                        v.setBackgroundColor(ContextCompat.getColor(this, R.color.progressDanger));
+//                        Snackbar.make(v, "Incorrect\t      Answer : " + currentOptionC + "", Snackbar.LENGTH_SHORT).show();
                     }
                     break;
                 case "D":
                     if (v.getId() == R.id.OptionD) {
+                        OptD.setBackgroundColor(ContextCompat.getColor(this, R.color.progressOkay));
                         //Here we use the snackbar because if we use the toast then they will be stacked an user cannot idetify which questions answer is it showing
-                        Snackbar.make(v, "         Correct ☺", Snackbar.LENGTH_SHORT).show();
+//                        Snackbar.make(v, "         Correct ☺", Snackbar.LENGTH_SHORT).show();
 
                         currentScore++;
                     } else {
-                        Snackbar.make(v, "Incorrect\t      Answer : " + currentOptionD + "", Snackbar.LENGTH_SHORT).show();
+                        OptD.setBackgroundColor(ContextCompat.getColor(this, R.color.progressOkay));
+                        v.setBackgroundColor(ContextCompat.getColor(this, R.color.progressDanger));
+//                        Snackbar.make(v, "Incorrect\t      Answer : " + currentOptionD + "", Snackbar.LENGTH_SHORT).show();
                     }
                     break;
             }
+            v.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    displayNextQuestion();
+                }
+            }, 2000);
+        } else {
+            displayNextQuestion();
         }
 
-        displayNextQuestion();
+
+
     }
+
+
 
     private void setUIQuestionElements(Category category) {
         addTimer();

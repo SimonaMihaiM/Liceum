@@ -19,4 +19,5 @@
     <color name="progressOkay">#91C73E</color>
     <color name="progressWarning">#FFA500</color>
     <color name="progressDanger">#FF0000</color>
+    <color name="buttonBackgroundBase">#d0d5d9</color>
 </resources>
