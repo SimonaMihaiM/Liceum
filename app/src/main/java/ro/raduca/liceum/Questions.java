@@ -1,13 +1,10 @@
 package ro.raduca.liceum;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -18,10 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,7 +26,7 @@ import ro.raduca.liceum.data.Question;
 public class Questions extends AppCompatActivity {
 
     public int visibility = 0;
-    public int currentCategoryIndex, questionListIndex = 0, questionIndex=0, currentScore = 0;
+    public int questionListIndex = 0, questionIndex = 0, currentScore = 0;
     boolean categoryFinished = true;
     int maxQuestions = 10;
     TextView ques;
@@ -64,8 +58,6 @@ public class Questions extends AppCompatActivity {
         progressBar.setKeepScreenOn(true);
         progressBar.setScaleY(3f);
 
-
-        SharedPreferences shared = getSharedPreferences("Score", Context.MODE_PRIVATE);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
@@ -79,7 +71,11 @@ public class Questions extends AppCompatActivity {
 
         categories = Category.getAll(database.sqlite);
 
-        list = categories.get(Integer.parseInt(selectedCategoru.substring(1))).getRandomizedQuestionIds(maxQuestions);
+        database.close();
+
+        int selectedCategoryIndex = Integer.parseInt(selectedCategoru.substring(1)) - 1;
+
+        list = categories.get(selectedCategoryIndex).getRandomizedQuestionIds(maxQuestions);
 
         OptA = findViewById(R.id.OptionA);
         OptB = findViewById(R.id.OptionB);
@@ -89,7 +85,7 @@ public class Questions extends AppCompatActivity {
         play_button = findViewById(R.id.play_button);
     }
 
-    public void addTimer () {
+    public void addTimer() {
         if (timer != null) {
             timer.cancel();
         }
@@ -98,7 +94,7 @@ public class Questions extends AppCompatActivity {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                progressBarValue = (int) (progressBarValue - 100*timerStep/timerDuration);
+                progressBarValue = (int) (progressBarValue - 100 * timerStep / timerDuration);
                 int progressBarColor = ContextCompat.getColor(getContext(), R.color.progressOkay);
                 if (progressBarValue <= 66) {
                     progressBarColor = ContextCompat.getColor(getContext(), R.color.progressWarning);
@@ -126,7 +122,7 @@ public class Questions extends AppCompatActivity {
         return this;
     }
 
-    public void writeScore(){
+    public void writeScore() {
         final SharedPreferences shared = getSharedPreferences("Score", Context.MODE_PRIVATE);
         toast.cancel();
         SharedPreferences.Editor editor = shared.edit();
@@ -296,9 +292,7 @@ public class Questions extends AppCompatActivity {
         }
 
 
-
     }
-
 
 
     private void setUIQuestionElements(Category category) {
