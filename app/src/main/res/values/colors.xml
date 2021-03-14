@@ -16,4 +16,8 @@
     <color name="colorC9Background">#D2B48C</color>
     <color name="colorC10Background">#88a6db</color>
     <color name="colorC11Background">#5e68dc</color>
+    <color name="progressOkay">#91C73E</color>
+    <color name="progressWarning">#FFA500</color>
+    <color name="progressDanger">#FF0000</color>
+    <color name="buttonBackgroundBase">#d0d5d9</color>
 </resources>

@@ -38,6 +38,10 @@ public class Question {
         return questions;
     }
 
+    public int getId() {
+        return this.id;
+    }
+
     public String getQuestion(){
         return this.question;
     }
