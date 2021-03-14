@@ -29,4 +29,5 @@
     <string name="parolauitata">Ați uitat parola?</string>
     <string name="anteprenoriat">ANT</string>
     <string name="reseted_score">Scorul a fost resetat</string>
+    <string name="loading_questions">Pregătim întrebările…</string>
 </resources>

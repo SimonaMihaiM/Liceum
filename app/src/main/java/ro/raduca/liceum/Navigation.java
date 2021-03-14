@@ -108,7 +108,7 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
 
                 progressBar.setCancelable(false);
 
-                progressBar.setMessage("Getting questions ready...");
+                progressBar.setMessage(getString(R.string.loading_questions));
 
                 progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
@@ -143,7 +143,7 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
                     public void run() {}}, 400);
                 progressBar = new ProgressDialog(v.getContext());
                 progressBar.setCancelable(false);
-                progressBar.setMessage("Getting questions ready...");
+                progressBar.setMessage(getString(R.string.loading_questions));
                 progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 progressBar.setProgress(0);
                 progressBar.setMax(100);
@@ -170,7 +170,7 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
                     public void run() {}}, 400);
                 progressBar = new ProgressDialog(v.getContext());
                 progressBar.setCancelable(false);
-                progressBar.setMessage("Getting questions ready...");
+                progressBar.setMessage(getString(R.string.loading_questions));
                 progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 progressBar.setProgress(0);
                 progressBar.setMax(100);
@@ -197,7 +197,7 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
                     public void run() {}}, 400);
                 progressBar = new ProgressDialog(v.getContext());
                 progressBar.setCancelable(false);
-                progressBar.setMessage("Getting questions ready...");
+                progressBar.setMessage(getString(R.string.loading_questions));
                 progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 progressBar.setProgress(0);
                 progressBar.setMax(100);
@@ -224,7 +224,7 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
                     public void run() {}}, 400);
                 progressBar = new ProgressDialog(v.getContext());
                 progressBar.setCancelable(false);
-                progressBar.setMessage("Getting questions ready...");
+                progressBar.setMessage(getString(R.string.loading_questions));
                 progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 progressBar.setProgress(0);
                 progressBar.setMax(100);
@@ -251,7 +251,7 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
                     public void run() {}}, 400);
                 progressBar = new ProgressDialog(v.getContext());
                 progressBar.setCancelable(false);
-                progressBar.setMessage("Getting questions ready...");
+                progressBar.setMessage(getString(R.string.loading_questions));
                 progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 progressBar.setProgress(0);
                 progressBar.setMax(100);
@@ -278,7 +278,7 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
                     public void run() {}}, 400);
                 progressBar = new ProgressDialog(v.getContext());
                 progressBar.setCancelable(false);
-                progressBar.setMessage("Getting questions ready...");
+                progressBar.setMessage(getString(R.string.loading_questions));
                 progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 progressBar.setProgress(0);
                 progressBar.setMax(100);
@@ -305,7 +305,7 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
                     public void run() {}}, 400);
                 progressBar = new ProgressDialog(v.getContext());
                 progressBar.setCancelable(false);
-                progressBar.setMessage("Getting questions ready...");
+                progressBar.setMessage(getString(R.string.loading_questions));
                 progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 progressBar.setProgress(0);
                 progressBar.setMax(100);
@@ -332,7 +332,7 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
                     public void run() {}}, 400);
                 progressBar = new ProgressDialog(v.getContext());
                 progressBar.setCancelable(false);
-                progressBar.setMessage("Getting questions ready...");
+                progressBar.setMessage(getString(R.string.loading_questions));
                 progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 progressBar.setProgress(0);
                 progressBar.setMax(100);
@@ -359,7 +359,7 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
                     public void run() {}}, 400);
                 progressBar = new ProgressDialog(v.getContext());
                 progressBar.setCancelable(false);
-                progressBar.setMessage("Getting questions ready...");
+                progressBar.setMessage(getString(R.string.loading_questions));
                 progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 progressBar.setProgress(0);
                 progressBar.setMax(100);
@@ -386,7 +386,7 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
                     public void run() {}}, 400);
                 progressBar = new ProgressDialog(v.getContext());
                 progressBar.setCancelable(false);
-                progressBar.setMessage("Getting questions ready...");
+                progressBar.setMessage(getString(R.string.loading_questions));
                 progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 progressBar.setProgress(0);
                 progressBar.setMax(100);
