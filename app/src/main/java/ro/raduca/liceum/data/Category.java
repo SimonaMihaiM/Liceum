@@ -22,7 +22,7 @@ public class Category {
     }
 
     public static ArrayList<Category> getAll(SQLiteDatabase sqlite) {
-        Cursor cursor = sqlite.rawQuery("SELECT id, table_name, translated_name FROM contents", null);
+        Cursor cursor = sqlite.rawQuery("SELECT id, table_name, translated_name FROM contents ORDER BY screen_order", null);
         ArrayList<Category> categories = new ArrayList<>();
 
         while(cursor.moveToNext()) {
