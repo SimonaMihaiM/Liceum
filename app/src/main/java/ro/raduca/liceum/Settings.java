@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.Objects;
+
 import ro.raduca.liceum.R;
 
 public class Settings extends AppCompatActivity {
@@ -25,7 +28,7 @@ public class Settings extends AppCompatActivity {
         final SharedPreferences sharedPreferences = getSharedPreferences("Score", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
         Button reset = findViewById(R.id.reset);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         reset.setOnClickListener(new View.OnClickListener() {
             @Override

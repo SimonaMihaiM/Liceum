@@ -4,19 +4,29 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.google.android.material.navigation.NavigationView;
-import ro.raduca.liceum.R;
+
+import java.util.ArrayList;
+
+import ro.raduca.liceum.data.Category;
+import ro.raduca.liceum.data.Database;
 
 
 public class Navigation extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -32,6 +42,14 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
 
         setContentView(R.layout.activity_navigation);
 
+        Database database = new Database(this);
+        database.createDatabase();
+        database.openDatabase();
+        database.getWritableDatabase();
+
+        ArrayList<Category> categories = Category.getAll(database.sqlite);
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -45,8 +63,6 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
         navigationView.setNavigationItemSelectedListener(this);
         SharedPreferences sp = getSharedPreferences("Score", Context.MODE_PRIVATE);
 
-        // setarea numelui, adresei de email in navigation drawer cu ceea ce introduce utilizatorul in pagina de log in
-
         String nav_header_name = sharedPreferences.getString("name", "xyz");
         String nav_header_email = sharedPreferences.getString("email", "abc@gmail.com");
         View header = navigationView.getHeaderView(0);
@@ -55,7 +71,6 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
         nav_email_header = header.findViewById(R.id.nav_header_email);
         nav_name_header.setText(nav_header_name);
         nav_email_header.setText(nav_header_email);
-
 
         c1 = findViewById(R.id.b1);
         c2 = findViewById(R.id.b2);
@@ -69,25 +84,32 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
         c10 = findViewById(R.id.b10);
         c11 = findViewById(R.id.b11);
 
+        c1.setText(categories.get(0).getTranslatedName());
+        c2.setText(categories.get(1).getTranslatedName());
+        c3.setText(categories.get(2).getTranslatedName());
+        c4.setText(categories.get(3).getTranslatedName());
+        c5.setText(categories.get(4).getTranslatedName());
+        c6.setText(categories.get(5).getTranslatedName());
+        c7.setText(categories.get(6).getTranslatedName());
+        c8.setText(categories.get(7).getTranslatedName());
+        c9.setText(categories.get(8).getTranslatedName());
+        c10.setText(categories.get(9).getTranslatedName());
+        c11.setText(categories.get(10).getTranslatedName());
+
         c1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                // pentru a afisa butonul
-                new Handler().postDelayed(new Runnable() {
+                new Handler(Looper.myLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {}}, 400);
 
-                // am creat un obiect de tip progress bar
                 progressBar = new ProgressDialog(v.getContext());
 
-                // progress Bar-ul nu poate fi anulat apasand pe ecran
                 progressBar.setCancelable(false);
 
-                // titlul ce apare in progressBar
                 progressBar.setMessage("Getting questions ready...");
 
-                // stilul este de tip spinner
                 progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
                 progressBar.setProgress(0);
@@ -96,7 +118,7 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
 
                 // pentru a fi afisat si vizualizat, voi adauga un delay progress barului
 
-                new Handler().postDelayed(new Runnable() {
+                new Handler(Looper.myLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
 
