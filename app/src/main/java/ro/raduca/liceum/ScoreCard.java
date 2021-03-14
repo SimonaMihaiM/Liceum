@@ -8,6 +8,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.Objects;
+
 import ro.raduca.liceum.R;
 
 
@@ -22,7 +24,7 @@ public class ScoreCard extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         SharedPreferences sharedPreferences = getSharedPreferences("Score", Context.MODE_PRIVATE);
 
         a1 = findViewById(R.id.computer);
