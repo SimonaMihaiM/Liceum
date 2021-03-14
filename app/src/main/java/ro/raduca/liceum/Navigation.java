@@ -49,6 +49,8 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
 
         ArrayList<Category> categories = Category.getAll(database.sqlite);
 
+        database.close();
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

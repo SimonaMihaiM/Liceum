@@ -70,7 +70,7 @@ public class Questions extends AppCompatActivity {
         progressBar.setScaleY(3f);
 
 
-//        SharedPreferences shared = getSharedPreferences("Score", Context.MODE_PRIVATE);
+        SharedPreferences shared = getSharedPreferences("Score", Context.MODE_PRIVATE);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
@@ -135,28 +135,28 @@ public class Questions extends AppCompatActivity {
         SharedPreferences.Editor editor = shared.edit();
         editor.putInt("Questions", questionIndex).apply();
 
-        if (selectedCategoru.equals("c1") && shared.getInt("Computer", 0) < currentScore)
-            editor.putInt("Computer", currentScore * 10).apply();
-        else if (selectedCategoru.equals("c2") && shared.getInt("Sports", 0) < 1)
-            editor.putInt("Sports", currentScore * 10).apply();
-        else if (selectedCategoru.equals("c3") && shared.getInt("Inventions", 0) < 1)
-            editor.putInt("Inventions", currentScore * 10).apply();
-        else if (selectedCategoru.equals("c4") && shared.getInt("General", 0) < 1)
-            editor.putInt("General", currentScore * 10).apply();
-        else if (selectedCategoru.equals("c5") && shared.getInt("Science", 0) < 1)
-            editor.putInt("Science", currentScore * 10).apply();
-        else if (selectedCategoru.equals("c6") && shared.getInt("English", 0) < 1)
-            editor.putInt("English", currentScore * 10).apply();
-        else if (selectedCategoru.equals("c7") && shared.getInt("Books", 0) < 1)
-            editor.putInt("Books", currentScore * 10).apply();
-        else if (selectedCategoru.equals("c8") && shared.getInt("Maths", 0) < 1)
-            editor.putInt("Maths", currentScore * 10).apply();
-        else if (selectedCategoru.equals("c9") && shared.getInt("Capitals", 0) < 1)
-            editor.putInt("Capitals", currentScore * 10).apply();
-        else if (selectedCategoru.equals("c10") && shared.getInt("Currency", 0) < 1)
-            editor.putInt("Currency", currentScore * 10).apply();
-        else if (selectedCategoru.equals("c11") && shared.getInt("ANT", 0) < 1)
-            editor.putInt("ANT", currentScore * 10).apply();
+        if (selectedCategoru.equals("c1") && shared.getInt(categories.get(0).getName(), 0) < currentScore)
+            editor.putInt(categories.get(0).getName(), currentScore * 10).apply();
+        else if (selectedCategoru.equals("c2") && shared.getInt(categories.get(1).getName(), 0) < 1)
+            editor.putInt(categories.get(1).getName(), currentScore * 10).apply();
+        else if (selectedCategoru.equals("c3") && shared.getInt(categories.get(2).getName(), 0) < 1)
+            editor.putInt(categories.get(2).getName(), currentScore * 10).apply();
+        else if (selectedCategoru.equals("c4") && shared.getInt(categories.get(3).getName(), 0) < 1)
+            editor.putInt(categories.get(3).getName(), currentScore * 10).apply();
+        else if (selectedCategoru.equals("c5") && shared.getInt(categories.get(4).getName(), 0) < 1)
+            editor.putInt(categories.get(4).getName(), currentScore * 10).apply();
+        else if (selectedCategoru.equals("c6") && shared.getInt(categories.get(5).getName(), 0) < 1)
+            editor.putInt(categories.get(5).getName(), currentScore * 10).apply();
+        else if (selectedCategoru.equals("c7") && shared.getInt(categories.get(6).getName(), 0) < 1)
+            editor.putInt(categories.get(6).getName(), currentScore * 10).apply();
+        else if (selectedCategoru.equals("c8") && shared.getInt(categories.get(7).getName(), 0) < 1)
+            editor.putInt(categories.get(7).getName(), currentScore * 10).apply();
+        else if (selectedCategoru.equals("c9") && shared.getInt(categories.get(8).getName(), 0) < 1)
+            editor.putInt(categories.get(8).getName(), currentScore * 10).apply();
+        else if (selectedCategoru.equals("c10") && shared.getInt(categories.get(9).getName(), 0) < 1)
+            editor.putInt(categories.get(9).getName(), currentScore * 10).apply();
+        else if (selectedCategoru.equals("c11") && shared.getInt(categories.get(10).getName(), 0) < 1)
+            editor.putInt(categories.get(10).getName(), currentScore * 10).apply();
     }
 
     public void displayResults() {

@@ -42,6 +42,9 @@ public class Category {
     public String getTranslatedName() {
         return this.translatedName;
     }
+    public String getName() {
+        return this.name;
+    }
 
     public Question getQuestion(int index) {
         return this.questions.get(index);
