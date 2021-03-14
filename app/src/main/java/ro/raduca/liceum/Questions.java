@@ -170,6 +170,10 @@ public class Questions extends AppCompatActivity {
     }
 
     public void displayNextQuestion() {
+        if (timer != null) {
+            timer.cancel();
+        }
+
         OptA.setBackgroundColor(ContextCompat.getColor(this, R.color.buttonBackgroundBase));
         OptB.setBackgroundColor(ContextCompat.getColor(this, R.color.buttonBackgroundBase));
         OptC.setBackgroundColor(ContextCompat.getColor(this, R.color.buttonBackgroundBase));
