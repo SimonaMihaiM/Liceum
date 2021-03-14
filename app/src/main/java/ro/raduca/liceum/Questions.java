@@ -44,7 +44,7 @@ public class Questions extends AppCompatActivity {
     String currentAnswer = null, currentOptionA, currentOptionB, currentOptionC, currentOptionD;
     ArrayList<Integer> list = new ArrayList<>();
     Toast toast;
-    long timerDuration = 10000;
+    long timerDuration = 15000;
     long timerStep = 1000;
     CountDownTimer timer;
 
