@@ -4,6 +4,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Category {
     private int id;
@@ -42,8 +44,20 @@ public class Category {
     public String getTranslatedName() {
         return this.translatedName;
     }
+    public String getName() {
+        return this.name;
+    }
 
     public Question getQuestion(int index) {
         return this.questions.get(index);
+    }
+    public ArrayList<Question> getQuestions() {return this.questions;}
+    public List<Integer> getRandomizedQuestionIds(int maxQuestions) {
+        List list = new ArrayList<Integer>();
+        for (Question question : this.questions) {
+            list.add(question.getId());
+        }
+        Collections.shuffle(list);
+        return list.subList(0, maxQuestions);
     }
 }

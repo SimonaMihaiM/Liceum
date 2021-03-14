@@ -13,11 +13,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-import com.google.android.material.snackbar.Snackbar;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 import ro.raduca.liceum.data.Category;
@@ -27,7 +26,7 @@ import ro.raduca.liceum.data.Question;
 public class Questions extends AppCompatActivity {
 
     public int visibility = 0;
-    public int currentCategoryIndex, questionListIndex = 0, questionIndex=0, currentScore = 0;
+    public int questionListIndex = 0, questionIndex = 0, currentScore = 0;
     boolean categoryFinished = true;
     int maxQuestions = 10;
     TextView ques;
@@ -38,21 +37,15 @@ public class Questions extends AppCompatActivity {
     ArrayList<Category> categories;
     Question currentQuestion;
     String currentAnswer = null, currentOptionA, currentOptionB, currentOptionC, currentOptionD;
-    ArrayList<Integer> list = new ArrayList<>();
+    List<Integer> list;
     Toast toast;
-    long timerDuration = 10000;
+    long timerDuration = 15000;
     long timerStep = 1000;
     CountDownTimer timer;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        for (currentCategoryIndex = 1; currentCategoryIndex <= maxQuestions; currentCategoryIndex++) {
-            list.add(currentCategoryIndex);
-        }
-        Collections.shuffle(list);
-//        list = new ArrayList<>(list.subList(0, 3));
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
 
@@ -61,10 +54,10 @@ public class Questions extends AppCompatActivity {
 
         progressBar = findViewById(R.id.progressBar);
         progressBar.setMax(100);
+        progressBar.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.progressOkay), android.graphics.PorterDuff.Mode.SRC_IN);
         progressBar.setKeepScreenOn(true);
+        progressBar.setScaleY(3f);
 
-
-//        SharedPreferences shared = getSharedPreferences("Score", Context.MODE_PRIVATE);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
@@ -78,6 +71,12 @@ public class Questions extends AppCompatActivity {
 
         categories = Category.getAll(database.sqlite);
 
+        database.close();
+
+        int selectedCategoryIndex = Integer.parseInt(selectedCategoru.substring(1)) - 1;
+
+        list = categories.get(selectedCategoryIndex).getRandomizedQuestionIds(maxQuestions);
+
         OptA = findViewById(R.id.OptionA);
         OptB = findViewById(R.id.OptionB);
         OptC = findViewById(R.id.OptionC);
@@ -86,7 +85,7 @@ public class Questions extends AppCompatActivity {
         play_button = findViewById(R.id.play_button);
     }
 
-    public void addTimer () {
+    public void addTimer() {
         if (timer != null) {
             timer.cancel();
         }
@@ -95,7 +94,17 @@ public class Questions extends AppCompatActivity {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                progressBarValue = (int) (progressBarValue - 100*timerStep/timerDuration);
+                progressBarValue = (int) (progressBarValue - 100 * timerStep / timerDuration);
+                int progressBarColor = ContextCompat.getColor(getContext(), R.color.progressOkay);
+                if (progressBarValue <= 66) {
+                    progressBarColor = ContextCompat.getColor(getContext(), R.color.progressWarning);
+                }
+                if (progressBarValue <= 33) {
+                    progressBarColor = ContextCompat.getColor(getContext(), R.color.progressDanger);
+                }
+
+                progressBar.getProgressDrawable().setColorFilter(progressBarColor, android.graphics.PorterDuff.Mode.SRC_IN);
+
                 progressBar.setProgress(progressBarValue);
             }
 
@@ -109,34 +118,38 @@ public class Questions extends AppCompatActivity {
         timer.start();
     }
 
-    public void writeScore(){
+    public Context getContext() {
+        return this;
+    }
+
+    public void writeScore() {
         final SharedPreferences shared = getSharedPreferences("Score", Context.MODE_PRIVATE);
         toast.cancel();
         SharedPreferences.Editor editor = shared.edit();
         editor.putInt("Questions", questionIndex).apply();
 
-        if (selectedCategoru.equals("c1") && shared.getInt("Computer", 0) < currentScore)
-            editor.putInt("Computer", currentScore * 10).apply();
-        else if (selectedCategoru.equals("c2") && shared.getInt("Sports", 0) < 1)
-            editor.putInt("Sports", currentScore * 10).apply();
-        else if (selectedCategoru.equals("c3") && shared.getInt("Inventions", 0) < 1)
-            editor.putInt("Inventions", currentScore * 10).apply();
-        else if (selectedCategoru.equals("c4") && shared.getInt("General", 0) < 1)
-            editor.putInt("General", currentScore * 10).apply();
-        else if (selectedCategoru.equals("c5") && shared.getInt("Science", 0) < 1)
-            editor.putInt("Science", currentScore * 10).apply();
-        else if (selectedCategoru.equals("c6") && shared.getInt("English", 0) < 1)
-            editor.putInt("English", currentScore * 10).apply();
-        else if (selectedCategoru.equals("c7") && shared.getInt("Books", 0) < 1)
-            editor.putInt("Books", currentScore * 10).apply();
-        else if (selectedCategoru.equals("c8") && shared.getInt("Maths", 0) < 1)
-            editor.putInt("Maths", currentScore * 10).apply();
-        else if (selectedCategoru.equals("c9") && shared.getInt("Capitals", 0) < 1)
-            editor.putInt("Capitals", currentScore * 10).apply();
-        else if (selectedCategoru.equals("c10") && shared.getInt("Currency", 0) < 1)
-            editor.putInt("Currency", currentScore * 10).apply();
-        else if (selectedCategoru.equals("c11") && shared.getInt("ANT", 0) < 1)
-            editor.putInt("ANT", currentScore * 10).apply();
+        if (selectedCategoru.equals("c1") && shared.getInt(categories.get(0).getName(), 0) < currentScore)
+            editor.putInt(categories.get(0).getName(), currentScore * 10).apply();
+        else if (selectedCategoru.equals("c2") && shared.getInt(categories.get(1).getName(), 0) < 1)
+            editor.putInt(categories.get(1).getName(), currentScore * 10).apply();
+        else if (selectedCategoru.equals("c3") && shared.getInt(categories.get(2).getName(), 0) < 1)
+            editor.putInt(categories.get(2).getName(), currentScore * 10).apply();
+        else if (selectedCategoru.equals("c4") && shared.getInt(categories.get(3).getName(), 0) < 1)
+            editor.putInt(categories.get(3).getName(), currentScore * 10).apply();
+        else if (selectedCategoru.equals("c5") && shared.getInt(categories.get(4).getName(), 0) < 1)
+            editor.putInt(categories.get(4).getName(), currentScore * 10).apply();
+        else if (selectedCategoru.equals("c6") && shared.getInt(categories.get(5).getName(), 0) < 1)
+            editor.putInt(categories.get(5).getName(), currentScore * 10).apply();
+        else if (selectedCategoru.equals("c7") && shared.getInt(categories.get(6).getName(), 0) < 1)
+            editor.putInt(categories.get(6).getName(), currentScore * 10).apply();
+        else if (selectedCategoru.equals("c8") && shared.getInt(categories.get(7).getName(), 0) < 1)
+            editor.putInt(categories.get(7).getName(), currentScore * 10).apply();
+        else if (selectedCategoru.equals("c9") && shared.getInt(categories.get(8).getName(), 0) < 1)
+            editor.putInt(categories.get(8).getName(), currentScore * 10).apply();
+        else if (selectedCategoru.equals("c10") && shared.getInt(categories.get(9).getName(), 0) < 1)
+            editor.putInt(categories.get(9).getName(), currentScore * 10).apply();
+        else if (selectedCategoru.equals("c11") && shared.getInt(categories.get(10).getName(), 0) < 1)
+            editor.putInt(categories.get(10).getName(), currentScore * 10).apply();
     }
 
     public void displayResults() {
@@ -150,6 +163,15 @@ public class Questions extends AppCompatActivity {
     }
 
     public void displayNextQuestion() {
+        if (timer != null) {
+            timer.cancel();
+        }
+
+        OptA.setBackgroundColor(ContextCompat.getColor(this, R.color.buttonBackgroundBase));
+        OptB.setBackgroundColor(ContextCompat.getColor(this, R.color.buttonBackgroundBase));
+        OptC.setBackgroundColor(ContextCompat.getColor(this, R.color.buttonBackgroundBase));
+        OptD.setBackgroundColor(ContextCompat.getColor(this, R.color.buttonBackgroundBase));
+
         if (questionListIndex == maxQuestions) {
             displayResults();
         } else {
@@ -206,50 +228,72 @@ public class Questions extends AppCompatActivity {
         }
 
         if (currentAnswer != null) {
+
             switch (currentAnswer) {
                 case "A":
                     if (v.getId() == R.id.OptionA) {
-                        Snackbar.make(v, "         Correct ☺", Snackbar.LENGTH_SHORT).show();
+                        OptA.setBackgroundColor(ContextCompat.getColor(this, R.color.progressOkay));
+//                        Snackbar.make(v, "         Correct ☺", Snackbar.LENGTH_SHORT).show();
                         currentScore++;
                     } else {
-                        Snackbar.make(v, "Incorrect\t      Answer : " + currentOptionA + "", Snackbar.LENGTH_SHORT).show();
+                        OptA.setBackgroundColor(ContextCompat.getColor(this, R.color.progressOkay));
+                        v.setBackgroundColor(ContextCompat.getColor(this, R.color.progressDanger));
+//                        Snackbar.make(v, "Incorrect\t      Answer : " + currentOptionA + "", Snackbar.LENGTH_SHORT).show();
                     }
                     break;
                 case "B":
                     if (v.getId() == R.id.OptionB) {
+                        OptB.setBackgroundColor(ContextCompat.getColor(this, R.color.progressOkay));
                         //Here we use the snackbar because if we use the toast then they will be stacked an user cannot idetify which questions answer is it showing
-                        Snackbar.make(v, "         Correct ☺", Snackbar.LENGTH_SHORT).show();
+//                        Snackbar.make(v, "         Correct ☺", Snackbar.LENGTH_SHORT).show();
 
                         currentScore++;
                     } else {
-                        Snackbar.make(v, "Incorrect\t      Answer : " + currentOptionB + "", Snackbar.LENGTH_SHORT).show();
+                        v.setBackgroundColor(ContextCompat.getColor(this, R.color.progressDanger));
+                        OptB.setBackgroundColor(ContextCompat.getColor(this, R.color.progressOkay));
+//                        Snackbar.make(v, "Incorrect\t      Answer : " + currentOptionB + "", Snackbar.LENGTH_SHORT).show();
                     }
                     break;
                 case "C":
                     if (v.getId() == R.id.OptionC) {
+                        OptC.setBackgroundColor(ContextCompat.getColor(this, R.color.progressOkay));
                         //Here we use the snackbar because if we use the toast then they will be stacked an user cannot idetify which questions answer is it showing
-                        Snackbar.make(v, "         Correct ☺", Snackbar.LENGTH_SHORT).show();
+//                        Snackbar.make(v, "         Correct ☺", Snackbar.LENGTH_SHORT).show();
 
                         currentScore++;
                     } else {
-                        Snackbar.make(v, "Incorrect\t      Answer : " + currentOptionC + "", Snackbar.LENGTH_SHORT).show();
+                        OptC.setBackgroundColor(ContextCompat.getColor(this, R.color.progressOkay));
+                        v.setBackgroundColor(ContextCompat.getColor(this, R.color.progressDanger));
+//                        Snackbar.make(v, "Incorrect\t      Answer : " + currentOptionC + "", Snackbar.LENGTH_SHORT).show();
                     }
                     break;
                 case "D":
                     if (v.getId() == R.id.OptionD) {
+                        OptD.setBackgroundColor(ContextCompat.getColor(this, R.color.progressOkay));
                         //Here we use the snackbar because if we use the toast then they will be stacked an user cannot idetify which questions answer is it showing
-                        Snackbar.make(v, "         Correct ☺", Snackbar.LENGTH_SHORT).show();
+//                        Snackbar.make(v, "         Correct ☺", Snackbar.LENGTH_SHORT).show();
 
                         currentScore++;
                     } else {
-                        Snackbar.make(v, "Incorrect\t      Answer : " + currentOptionD + "", Snackbar.LENGTH_SHORT).show();
+                        OptD.setBackgroundColor(ContextCompat.getColor(this, R.color.progressOkay));
+                        v.setBackgroundColor(ContextCompat.getColor(this, R.color.progressDanger));
+//                        Snackbar.make(v, "Incorrect\t      Answer : " + currentOptionD + "", Snackbar.LENGTH_SHORT).show();
                     }
                     break;
             }
+            v.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    displayNextQuestion();
+                }
+            }, 2000);
+        } else {
+            displayNextQuestion();
         }
 
-        displayNextQuestion();
+
     }
+
 
     private void setUIQuestionElements(Category category) {
         addTimer();
