@@ -22,6 +22,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 import ro.raduca.liceum.data.Category;
@@ -42,7 +43,7 @@ public class Questions extends AppCompatActivity {
     ArrayList<Category> categories;
     Question currentQuestion;
     String currentAnswer = null, currentOptionA, currentOptionB, currentOptionC, currentOptionD;
-    ArrayList<Integer> list = new ArrayList<>();
+    List<Integer> list;
     Toast toast;
     long timerDuration = 15000;
     long timerStep = 1000;
@@ -51,12 +52,6 @@ public class Questions extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        for (currentCategoryIndex = 1; currentCategoryIndex <= maxQuestions; currentCategoryIndex++) {
-            list.add(currentCategoryIndex);
-        }
-        Collections.shuffle(list);
-//        list = new ArrayList<>(list.subList(0, 3));
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
 
@@ -83,6 +78,8 @@ public class Questions extends AppCompatActivity {
         database.getWritableDatabase();
 
         categories = Category.getAll(database.sqlite);
+
+        list = categories.get(Integer.parseInt(selectedCategoru.substring(1))).getRandomizedQuestionIds(maxQuestions);
 
         OptA = findViewById(R.id.OptionA);
         OptB = findViewById(R.id.OptionB);
