@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (save_name.equals("") || save_email.equals("") || save_password.equals("")) {
                         try {
-                            Toast.makeText(MainActivity.this, "Please enter the details!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Introduceți detaliile!", Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             Log.d("Error", "Error");
                         }
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                         // crearea unui obiect de tip progress bar
                         progressBar = new ProgressDialog(v.getContext());
                         progressBar.setCancelable(false); // nu poate fi anulat apasand pe ecran
-                        progressBar.setMessage("Please Wait..."); // mesajul care este afisat
+                        progressBar.setMessage("Aveți puțintică răbdare..."); // mesajul care este afisat
                         progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER); // stilul
                         progressBar.setProgress(0);
                         progressBar.setMax(100);
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
                             progressBar = new ProgressDialog(v.getContext());
                             progressBar.setCancelable(false);
-                            progressBar.setMessage("Please Wait...");
+                            progressBar.setMessage("Aveți puțintică răbdare...");
                             progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                             progressBar.setProgress(0);
                             progressBar.setMax(100);
@@ -147,9 +147,8 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             }, 2000);
                         }
-                        // parola introdusa este gresita
                         else {
-                            Toast.makeText(MainActivity.this, "Please enter correct password!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Parola introdusă este greșită!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -200,11 +199,11 @@ public class MainActivity extends AppCompatActivity {
         final EditText editTextDialog = new EditText(MainActivity.this);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         editTextDialog.setLayoutParams(layoutParams);
-        editTextDialog.setHint("Email address");
+        editTextDialog.setHint("Adresa de e-mail");
 
         // adaugarea EditText in casuta de Dialog
         alertDialog.setView(editTextDialog);
-        alertDialog.setTitle("Enter e-mail address!");
+        alertDialog.setTitle("Introduceți adresa de e-mail!");
         final SharedPreferences sharedPreferences = getSharedPreferences("Content_main", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -229,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
                 } else {
-                    Toast.makeText(MainActivity.this, "Enter correct e-mail address!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Introduceți adresa corectă de e-mail!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
