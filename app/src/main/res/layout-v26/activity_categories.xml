@@ -65,7 +65,9 @@
 
             <Button
                 android:id="@+id/OptionA"
-                android:layout_width="0dp"
+                app:autoSizeMaxTextSize="50sp"
+                app:autoSizeMinTextSize="8sp"
+                app:autoSizeStepGranularity="2sp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:foreground="?attr/selectableItemBackground"
@@ -76,9 +78,13 @@
                 android:textColor="@color/colorTextLight"
                 android:textSize="20sp"
                 android:autoSizeTextType="uniform"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                android:layout_width="0dp" />
 
             <Button
+                app:autoSizeMaxTextSize="50sp"
+                app:autoSizeMinTextSize="8sp"
+                app:autoSizeStepGranularity="2sp"
                 android:id="@+id/OptionB"
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -101,6 +107,9 @@
             android:orientation="horizontal">
 
             <Button
+                app:autoSizeMaxTextSize="50sp"
+                app:autoSizeMinTextSize="8sp"
+                app:autoSizeStepGranularity="2sp"
                 android:id="@+id/OptionC"
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -116,6 +125,9 @@
                 android:textSize="20sp"/>
 
             <Button
+                app:autoSizeMaxTextSize="50sp"
+                app:autoSizeMinTextSize="8sp"
+                app:autoSizeStepGranularity="2sp"
                 android:id="@+id/OptionD"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
