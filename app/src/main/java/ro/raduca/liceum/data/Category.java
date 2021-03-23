@@ -19,15 +19,11 @@ public class Category {
         this.translatedName = translatedName;
     }
 
-    public void setQuestions(ArrayList<Question> questions) {
-        this.questions = questions;
-    }
-
     public static ArrayList<Category> getAll(SQLiteDatabase sqlite) {
         Cursor cursor = sqlite.rawQuery("SELECT id, table_name, translated_name FROM contents ORDER BY screen_order", null);
         ArrayList<Category> categories = new ArrayList<>();
 
-        while(cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
             int id = cursor.getInt(cursor.getColumnIndex("id"));
             String name = cursor.getString(cursor.getColumnIndex("table_name"));
             String translatedName = cursor.getString(cursor.getColumnIndex("translated_name"));
@@ -38,20 +34,34 @@ public class Category {
         }
         cursor.close();
 
-       return categories;
+        return categories;
     }
 
     public String getTranslatedName() {
         return this.translatedName;
     }
+
     public String getName() {
         return this.name;
     }
 
     public Question getQuestion(int index) {
-        return this.questions.get(index);
+        for (Question question : this.questions) {
+            if (question.getId() == index) {
+                return question;
+            }
+        }
+        return this.questions.get(0);
     }
-    public ArrayList<Question> getQuestions() {return this.questions;}
+
+    public ArrayList<Question> getQuestions() {
+        return this.questions;
+    }
+
+    public void setQuestions(ArrayList<Question> questions) {
+        this.questions = questions;
+    }
+
     public List<Integer> getRandomizedQuestionIds(int maxQuestions) {
         List list = new ArrayList<Integer>();
         for (Question question : this.questions) {
